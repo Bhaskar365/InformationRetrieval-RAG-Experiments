@@ -91,8 +91,6 @@ Answer:
 
     return response[0]["generated_text"]
 
-
-
 print(
     ask_pdf(
         "Tell me about the abstract."
