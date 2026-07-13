@@ -6,7 +6,7 @@ embedder = SentenceTransformer("BAAI/bge-small-en-v1.5")
 with open('shakespeare.txt', 'r') as f:
     text = f.read()
 
-chunk_size = 300
+chunk_size = 200
 
 chunks = [
     text[i:i+chunk_size] for i in range(0, len(text), chunk_size)
@@ -14,12 +14,26 @@ chunks = [
 
 embeddings = embedder.encode(chunks)
 
+
 import faiss
 import numpy as np
 
 dimension = embeddings.shape[1]
 
-index = faiss.IndexFlatL2(dimension)
+quantizer = faiss.IndexFlatL2(dimension)
+
+nlist = 100
+
+index = faiss.IndexIVFFlat(
+    quantizer,
+    dimension,
+    nlist,
+    faiss.METRIC_L2
+)
+
+# index = faiss.IndexHNSWFlat(dimension)
+
+index.train(embeddings.astype("float32"))
 
 index.add(np.array(embeddings).astype("float32"))
 
@@ -37,14 +51,11 @@ context = "\n".join(
     for i in I[0]
 )
 
+
 prompt = f"""
 You are given excerpts from Shakespeare.
 
-If the question is a quote from the text,
-continue it exactly as it appears.
-
-Only use the provided context and then explain what exactly is happening.
-Context:
+From theese texts, generate new text that makes change sense today.
 
 {context}
 
@@ -58,23 +69,19 @@ Answer:
 from transformers import AutoTokenizer
 from transformers import AutoModelForCausalLM
 
-tokenizer = AutoTokenizer.from_pretrained(
-    "Qwen/Qwen2.5-0.5B-Instruct"
-)
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")
 
-model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-0.5B-Instruct"
-)
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")
 
 inputs = tokenizer(
     prompt,
-    return_tensors="pt"
+    return_tensors='pt'
 )
 
 outputs = model.generate(
     **inputs,
     max_new_tokens=100,
-    # temperature=0.2,
+    temperature=0.2,
     do_sample=False
 )
 
@@ -83,9 +90,6 @@ answer = tokenizer.decode(
     skip_special_tokens=True
 )
 
-print("=" * 50)
-print(context)
-print("=" * 50)
-
 print(answer)
+
 
