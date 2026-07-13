@@ -12,8 +12,7 @@ chunks = [
     text[i:i+chunk_size] for i in range(0, len(text), chunk_size)
 ]
 
-embeddings = embedder.encode(chunks)
-
+embeddings = embedder.encode(chunks).astype('float32')
 
 import faiss
 import numpy as np

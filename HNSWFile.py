@@ -8,7 +8,7 @@ embedder = SentenceTransformer("BAAI/bge-small-en-v1.5")
 with open('shakespeare.txt', 'r') as f:
     text = f.read()
 
-chunk_size = 100
+chunk_size = 200
 
 chunks = [ text[i:i+chunk_size] for i in range(0, len(text), chunk_size) ]
 
@@ -28,10 +28,10 @@ index.add(np.array(embeddings).astype('float32'))
 
 query_embedding = embedder.encode(
     ["You are all resolved rather to die than to famish?"]
-)
+).astype('float32')
 
 D,I = index.search(
-    np.array(query_embedding).astype('float32'), 32
+    np.array(query_embedding).astype('float32'), 3
 )
 
 context = '\n'.join(chunks[i] for i in I[0])
