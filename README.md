@@ -23,7 +23,7 @@ Originally developed as a **FAISS semantic search prototype**, the project has e
 - 📦 FAISS vector indexing
 - 🌐 HNSW (Hierarchical Navigable Small World) indexing
 - 📚 IVF Flat indexing
-- ⚖️ Reciprocal Rank Fusion (RRF)
+- ⚖️ Reciprocal Rank Fusion (RRF), Cross Encoder
 - 🧹 Text duplicate detection
 - 🤖 Manual RAG pipeline implementation
 - 📄 Company guideline retrieval & document matching
