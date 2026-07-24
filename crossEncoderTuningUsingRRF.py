@@ -162,7 +162,57 @@ def answer_query(query:str, top_k:int=TOP_K_FINAL) -> str:
     contexts = [text for _, text, _ in top_chunks]
     return generate_answer(query, contexts)
 
+def evaluate_retrieval(eval_set, top_k=TOP_K_FINAL):
+    hit_count = 0
+    reciprocal_ranks = []
+    precisions = []
+    recalls = []
+
+    for item in eval_set:
+        query = item['query']
+        relevant = set(item['relevant_ids'])
+
+        retrieved = retrieve(query,top_k=top_k)
+        retrieved_parent_ids = [chunk_to_parent[chunk_id] for chunk_id, _, _ in retrieved]
+
+        hit = any(pid in relevant for pid in retrieved_parent_ids)
+        hit_count += int(hit)
+
+        rr = 0.0
+        for rank, pid in enumerate(retrieved_parent_ids, start=1):
+            if pid in relevant:
+                rr = 1/rank
+                break
+        reciprocal_ranks.append(rr)
+
+        unique_retrieved = set(retrieved_parent_ids)
+        num_correct = len(unique_retrieved & relevant)
+        precisions.append(num_correct / max(len(unique_retrieved), 1))
+        recalls.append(num_correct / max(len(relevant), 1))
+
+    n = len(eval_set)
+
+    return {
+        "hit_rate@k": hit_count / n,
+        "mrr": sum(reciprocal_ranks) / n,
+        "precision@k": sum(precisions) / n,
+        "recall@k": sum(recalls) / n,
+    }
+
+def evaluate_generation(eval_set):
+    """Cheap smoke test: does the generated answer contain expected keyword(s)?
+    eval_set items need an "expected_keywords" list."""
+    correct = 0
+    for item in eval_set:
+        answer = answer_query(item["query"]).lower()
+        if any(kw.lower() in answer for kw in item.get("expected_keywords", [])):
+            correct += 1
+    return correct / len(eval_set)
+
 if __name__ == '__main__':
     query = 'How to reset the password'
     print(answer_query(query))
+
+    eval_set = [{"query": "How to reset the password", "relevant_ids": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]}]
+    print(evaluate_retrieval(eval_set))
     
