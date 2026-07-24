@@ -95,7 +95,6 @@ with open(FILE_PATH, "r", encoding="utf-8") as f:
 
 raw_docs = [d for d in guidelines if d["id"] > 0]
 
-
 def chunk_text(text, chunk_size=CHUNK_SIZE_WORDS, overlap=CHUNK_OVERLAP_WORDS):
     words = text.split()
     if len(words) <= chunk_size:
@@ -130,10 +129,8 @@ texts = list(document_store.values())
 tokenized_corpus = [t.split(" ") for t in texts]
 bm25 = BM25Okapi(tokenized_corpus)
 
-
 def bm25_scores_all(query: str) -> np.ndarray:
     return bm25.get_scores(query.split(" "))
-
 
 # ---------------------------------------------------------------------------
 # Dense retrieval (FAISS) — also scored over the WHOLE corpus
@@ -146,14 +143,12 @@ dimension = doc_embeddings.shape[1]
 index = faiss.IndexFlatIP(dimension)
 index.add(doc_embeddings)
 
-
 def dense_scores_all(query: str) -> np.ndarray:
     """Cosine similarity against every doc — same shape as bm25_scores_all,
     so the two can be normalized/fused directly."""
     q_emb = embedder.encode([query], convert_to_numpy=True).astype("float32")
     faiss.normalize_L2(q_emb)
     return doc_embeddings @ q_emb[0]
-
 
 # ---------------------------------------------------------------------------
 # Fusion
