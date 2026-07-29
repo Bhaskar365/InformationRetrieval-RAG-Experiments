@@ -220,118 +220,298 @@ if __name__ == '__main__':
     eval_set = [{"query": "How to reset the password", "relevant_ids": [1]}]
     print(evaluate_retrieval(eval_set))
 
-    labeled_queries = [
-        {"query": "How do I reset my password?", "relevant_ids": [1]},
-        {"query": "What's the leave policy?", "relevant_ids": [2]},
-        {"query": "What's the VPN installation steps?", "relevant_ids": [3]},
-        {"query": "What document can provide VPN installation steps?", "relevant_ids": [3]},
-        {"query": "What drive location can provide VPN installation steps?", "relevant_ids": [3]},
-        {"query": "What is the stance of company for salary payments?", "relevant_ids": [4]},
-        {"query": "Who to ask for in case of salary payment delay?", "relevant_ids": [4]},
-        {"query": "Who is responsible for monitoring attendance?", "relevant_ids": [10]},
-        {"query": "What is supervisors and managers required to do?", "relevant_ids": [14]},
-        {"query": "Employees responsibility with social media", "relevant_ids": [16]},
-        {"query": "Travel expense rules", "relevant_ids": [17]},
-        {"query": "What is the whileblower policy", "relevant_ids": [19]},
-        {"query": "What is performance management?", "relevant_ids": [20]},
-        {"query": "What is drug and alcohol policy?", "relevant_ids": [21]},
-        {"query": "What is grievance policy?", "relevant_ids": [22]},
+    # labeled_queries = [
+    #     {"query": "How do I reset my password?", "relevant_ids": [1]},
+    #     {"query": "What's the leave policy?", "relevant_ids": [2]},
+    #     {"query": "What's the VPN installation steps?", "relevant_ids": [3]},
+    #     {"query": "What document can provide VPN installation steps?", "relevant_ids": [3]},
+    #     {"query": "What drive location can provide VPN installation steps?", "relevant_ids": [3]},
+    #     {"query": "What is the stance of company for salary payments?", "relevant_ids": [4]},
+    #     {"query": "Who to ask for in case of salary payment delay?", "relevant_ids": [4]},
+    #     {"query": "Who is responsible for monitoring attendance?", "relevant_ids": [10]},
+    #     {"query": "What is supervisors and managers required to do?", "relevant_ids": [14]},
+    #     {"query": "Employees responsibility with social media", "relevant_ids": [16]},
+    #     {"query": "Travel expense rules", "relevant_ids": [17]},
+    #     {"query": "What is the whileblower policy", "relevant_ids": [19]},
+    #     {"query": "What is performance management?", "relevant_ids": [20]},
+    #     {"query": "What is drug and alcohol policy?", "relevant_ids": [21]},
+    #     {"query": "What is grievance policy?", "relevant_ids": [22]},
 
-        {"query": "How do I reset my password without IT help?", "relevant_ids": [1]},
-        {"query": "What's the leave policy for new employees?", "relevant_ids": [2]},
-        {"query": "What's the VPN installation steps for home users?", "relevant_ids": [3]},
-        {"query": "What document cannot provide VPN installation steps?", "relevant_ids": [3]},
-        {"query": "What drive location can provide VPN installation steps outside the network?", "relevant_ids": [3]},
-        {"query": "What is the stance of company for salary payments in case of failure of bank account?", "relevant_ids": [4]},
-        {"query": "Who to ask for in case of salary payment delay if account closed?", "relevant_ids": [4]},
-        {"query": "Who is responsible for monitoring attendance outside HR?", "relevant_ids": [10]},
-        {"query": "What is supervisors and managers required to not do?", "relevant_ids": [14]},
-        {"query": "Employees responsibility with social media to what extend", "relevant_ids": [16]},
-        {"query": "Travel expense rules exempts what?", "relevant_ids": [17]},
-        {"query": "What is the whileblower policy that is important?", "relevant_ids": [19]},
-        {"query": "What is performance management for managers?", "relevant_ids": [20]},
-        {"query": "What is drug and alcohol policy for upper managements?", "relevant_ids": [21]},
-        {"query": "What is grievance policy summary?", "relevant_ids": [22]},
+    #     {"query": "How do I reset my password without IT help?", "relevant_ids": [1]},
+    #     {"query": "What's the leave policy for new employees?", "relevant_ids": [2]},
+    #     {"query": "What's the VPN installation steps for home users?", "relevant_ids": [3]},
+    #     {"query": "What document cannot provide VPN installation steps?", "relevant_ids": [3]},
+    #     {"query": "What drive location can provide VPN installation steps outside the network?", "relevant_ids": [3]},
+    #     {"query": "What is the stance of company for salary payments in case of failure of bank account?", "relevant_ids": [4]},
+    #     {"query": "Who to ask for in case of salary payment delay if account closed?", "relevant_ids": [4]},
+    #     {"query": "Who is responsible for monitoring attendance outside HR?", "relevant_ids": [10]},
+    #     {"query": "What is supervisors and managers required to not do?", "relevant_ids": [14]},
+    #     {"query": "Employees responsibility with social media to what extend", "relevant_ids": [16]},
+    #     {"query": "Travel expense rules exempts what?", "relevant_ids": [17]},
+    #     {"query": "What is the whileblower policy that is important?", "relevant_ids": [19]},
+    #     {"query": "What is performance management for managers?", "relevant_ids": [20]},
+    #     {"query": "What is drug and alcohol policy for upper managements?", "relevant_ids": [21]},
+    #     {"query": "What is grievance policy summary?", "relevant_ids": [22]},
+    # ]
+
+    # def build_training_pairs(labeled_queries):
+    #     pairs = []
+    #     for item in labeled_queries:
+    #         for parent_id in item["relevant_ids"]:
+    #             matching_chunk_ids = [cid for cid,pid in chunk_to_parent.items() if pid == parent_id]
+    #             for chunk_id in matching_chunk_ids:
+    #                 pairs.append({ "query" : item["query"], "positive" : document_store[chunk_id] })
+
+    #     return pairs
+
+    # training_pairs = build_training_pairs(labeled_queries)
+
+    # def build_pairs_with_hard_negatives(labeled_queries, n_hard_negatives=1):
+    #     examples = []
+    #     for item in labeled_queries:
+    #         relevant = set(item["relevant_ids"])
+    #         bm25_scores = bm25_scores_all(item["query"])
+    #         ranked_idx = np.argsort(bm25_scores)[::-1]
+
+    #         positives = [document_store[cid] for cid, pid in chunk_to_parent.items() if pid in relevant]
+    #         hard_negs = []
+    #         for idx in ranked_idx:
+    #             cid = ids[idx]
+    #             if chunk_to_parent[cid] not in relevant:
+    #                 hard_negs.append(texts[idx])
+    #             if len(hard_negs) >= n_hard_negatives:
+    #                 break
+
+    #         for pos in positives:
+    #             for neg in hard_negs:
+    #                 examples.append(InputExample(texts=[item["query"], pos, neg]))
+
+    #     return examples
+
+    # train_examples = build_pairs_with_hard_negatives(labeled_queries)
+
+    # model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+
+    # train_examples = [
+    #     InputExample(texts=[p["query"], p["positive"]]) for p in training_pairs
+    # ]
+
+    # train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=16)
+    # train_loss = losses.MultipleNegativesRankingLoss(model)
+
+    # model.fit(
+    #     train_objectives=[(train_dataloader, train_loss)],
+    #     epochs=3,
+    #     warmup_steps=int(len(train_dataloader) * 0.1),
+    #     output_path="./bge-small-finetuned-guidelines"
+    # )
+
+    # model.save('./bge-small-finetuned-guidelines')
+
+    # # split 
+    # import random
+    # random.shuffle(labeled_queries)
+    # split = int(len(labeled_queries) * 0.8)
+    # train_queries, eval_queries = labeled_queries[:split], labeled_queries[split:]
+    # eval_set = eval_queries
+
+    # print("BEFORE fine-tune:", evaluate_retrieval(eval_set))
+
+    # train_examples = build_pairs_with_hard_negatives(train_queries)
+    # train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=16)
+    # train_loss = losses.MultipleNegativesRankingLoss(model)
+
+    # model.fit(train_objectives=[(train_dataloader, train_loss)], 
+    #           epochs=3, 
+    #           warmup_steps=int(len(train_dataloader)*0.1), 
+    #           output_path="./bge-small-finetuned-guidelines")
+
+    # # reload embedder with fine-tuned checkpoint, recompute doc_embeddings, then:
+    # embedder = SentenceTransformer("./bge-small-finetuned-guidelines")
+    # doc_embeddings = embedder.encode(texts, convert_to_numpy=True).astype('float32')
+    # faiss.normalize_L2(doc_embeddings)
+
+    # # print("AFTER fine-tune:", evaluate_retrieval(eval_set))
+
+    # print("doc_embeddings AFTER reload:", doc_embeddings[0][:5])
+    # print("AFTER fine-tune:", evaluate_retrieval(eval_set))
+
+        # ------------------------------------------------------------
+    # Fine tuning embedding model correctly
+    # ------------------------------------------------------------
+
+    from sentence_transformers import SentenceTransformer, InputExample, losses
+    from torch.utils.data import DataLoader
+    import random
+
+
+    labeled_queries = [
+            {"query": "How do I reset my password?", "relevant_ids": [1]},
+            {"query": "What's the leave policy?", "relevant_ids": [2]},
+            {"query": "What's the VPN installation steps?", "relevant_ids": [3]},
+            {"query": "What document can provide VPN installation steps?", "relevant_ids": [3]},
+            {"query": "What drive location can provide VPN installation steps?", "relevant_ids": [3]},
+            {"query": "What is the stance of company for salary payments?", "relevant_ids": [4]},
+            {"query": "Who to ask for in case of salary payment delay?", "relevant_ids": [4]},
+            {"query": "Who is responsible for monitoring attendance?", "relevant_ids": [10]},
+            {"query": "What is supervisors and managers required to do?", "relevant_ids": [14]},
+            {"query": "Employees responsibility with social media", "relevant_ids": [16]},
+            {"query": "Travel expense rules", "relevant_ids": [17]},
+            {"query": "What is the whileblower policy", "relevant_ids": [19]},
+            {"query": "What is performance management?", "relevant_ids": [20]},
+            {"query": "What is drug and alcohol policy?", "relevant_ids": [21]},
+            {"query": "What is grievance policy?", "relevant_ids": [22]},
+       
+            {"query": "How do I reset my password without IT help?", "relevant_ids": [1]},
+            {"query": "What's the leave policy for new employees?", "relevant_ids": [2]},
+            {"query": "What's the VPN installation steps for home users?", "relevant_ids": [3]},
+            {"query": "What document cannot provide VPN installation steps?", "relevant_ids": [3]},
+            {"query": "What drive location can provide VPN installation steps outside the network?", "relevant_ids": [3]},
+            {"query": "What is the stance of company for salary payments in case of failure of bank account?", "relevant_ids": [4]},
+            {"query": "Who to ask for in case of salary payment delay if account closed?", "relevant_ids": [4]},
+            {"query": "Who is responsible for monitoring attendance outside HR?", "relevant_ids": [10]},
+            {"query": "What is supervisors and managers required to not do?", "relevant_ids": [14]},
+            {"query": "Employees responsibility with social media to what extend", "relevant_ids": [16]},
+            {"query": "Travel expense rules exempts what?", "relevant_ids": [17]},
+            {"query": "What is the whileblower policy that is important?", "relevant_ids": [19]},
+            {"query": "What is performance management for managers?", "relevant_ids": [20]},
+            {"query": "What is drug and alcohol policy for upper managements?", "relevant_ids": [21]},
+            {"query": "What is grievance policy summary?", "relevant_ids": [22]},
     ]
 
-    def build_training_pairs(labeled_queries):
-        pairs = []
-        for item in labeled_queries:
-            for parent_id in item["relevant_ids"]:
-                matching_chunk_ids = [cid for cid,pid in chunk_to_parent.items() if pid == parent_id]
-                for chunk_id in matching_chunk_ids:
-                    pairs.append({ "query" : item["query"], "positive" : document_store[chunk_id] })
 
-        return pairs
+    # ------------------------------------------------------------
+    # Split FIRST
+    # ------------------------------------------------------------
 
-    training_pairs = build_training_pairs(labeled_queries)
+    random.shuffle(labeled_queries)
 
-    def build_pairs_with_hard_negatives(labeled_queries, n_hard_negatives=1):
+    split = int(len(labeled_queries) * 0.8)
+
+    train_queries = labeled_queries[:split]
+    eval_queries = labeled_queries[split:]
+
+    # ------------------------------------------------------------
+    # Evaluation set
+    # ------------------------------------------------------------
+
+    eval_set = eval_queries
+
+    # ------------------------------------------------------------
+    # Load ORIGINAL pretrained model
+    # ------------------------------------------------------------
+
+    embedder = SentenceTransformer("BAAI/bge-small-en-v1.5")
+
+    # ------------------------------------------------------------
+    # Evaluate BEFORE fine tuning
+    # ------------------------------------------------------------
+
+    print("BEFORE fine tuning:", evaluate_retrieval(eval_set))
+
+    # ------------------------------------------------------------
+    # Create query-positive pairs
+    # ------------------------------------------------------------
+
+    def build_training_pairs(dataset):
+
         examples = []
-        for item in labeled_queries:
-            relevant = set(item["relevant_ids"])
-            bm25_scores = bm25_scores_all(item["query"])
-            ranked_idx = np.argsort(bm25_scores)[::-1]
 
-            positives = [document_store[cid] for cid, pid in chunk_to_parent.items() if pid in relevant]
-            hard_negs = []
-            for idx in ranked_idx:
-                cid = ids[idx]
-                if chunk_to_parent[cid] not in relevant:
-                    hard_negs.append(texts[idx])
-                if len(hard_negs) >= n_hard_negatives:
-                    break
+        for item in dataset:
 
-            for pos in positives:
-                for neg in hard_negs:
-                    examples.append(InputExample(texts=[item["query"], pos, neg]))
+            query = item["query"]
+            relevant_ids = set(item["relevant_ids"])
+
+            for chunk_id, parent_id in chunk_to_parent.items():
+                if parent_id in relevant_ids:
+                    positive_text = document_store[chunk_id]
+                    examples.append(
+                        InputExample(
+                            texts=[
+                                query,
+                                positive_text
+                            ]
+                        )
+                    )
 
         return examples
 
-    train_examples = build_pairs_with_hard_negatives(labeled_queries)
 
-    model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+    train_examples = build_training_pairs(train_queries)
 
-    train_examples = [
-        InputExample(texts=[p["query"], p["positive"]]) for p in training_pairs
-    ]
+    print("Training examples:",len(train_examples))
 
-    train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=16)
-    train_loss = losses.MultipleNegativesRankingLoss(model)
+    # ------------------------------------------------------------
+    # Training
+    # ------------------------------------------------------------
 
-    model.fit(
-        train_objectives=[(train_dataloader, train_loss)],
-        epochs=3,
-        warmup_steps=int(len(train_dataloader) * 0.1),
+    train_dataloader = DataLoader(train_examples,shuffle=True,batch_size=16)
+
+    train_loss = losses.MultipleNegativesRankingLoss(embedder)
+
+    embedder.fit(
+        train_objectives=[
+            (
+                train_dataloader,
+                train_loss
+            )
+        ],
+        epochs=5,
+        warmup_steps=int(
+            len(train_dataloader) * 0.1
+        ),
         output_path="./bge-small-finetuned-guidelines"
     )
 
-    model.save('./bge-small-finetuned-guidelines')
 
-    # split 
-    import random
-    random.shuffle(labeled_queries)
-    split = int(len(labeled_queries) * 0.8)
-    train_queries, eval_queries = labeled_queries[:split], labeled_queries[split:]
-    eval_set = eval_queries
+    # ------------------------------------------------------------
+    # Reload fine tuned model
+    # ------------------------------------------------------------
 
-    print("BEFORE fine-tune:", evaluate_retrieval(eval_set))
+    embedder = SentenceTransformer(
+        "./bge-small-finetuned-guidelines"
+    )
 
-    train_examples = build_pairs_with_hard_negatives(train_queries)
-    train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=16)
-    train_loss = losses.MultipleNegativesRankingLoss(model)
 
-    model.fit(train_objectives=[(train_dataloader, train_loss)], 
-              epochs=3, 
-              warmup_steps=int(len(train_dataloader)*0.1), 
-              output_path="./bge-small-finetuned-guidelines")
 
-    # reload embedder with fine-tuned checkpoint, recompute doc_embeddings, then:
-    embedder = SentenceTransformer("./bge-small-finetuned-guidelines")
-    doc_embeddings = embedder.encode(texts, convert_to_numpy=True).astype('float32')
-    faiss.normalize_L2(doc_embeddings)
+    # ------------------------------------------------------------
+    # Re-create document embeddings
+    # ------------------------------------------------------------
 
-    # print("AFTER fine-tune:", evaluate_retrieval(eval_set))
+    doc_embeddings = embedder.encode(
+        texts,
+        convert_to_numpy=True
+    ).astype("float32")
 
-    print("doc_embeddings AFTER reload:", doc_embeddings[0][:5])
-    print("AFTER fine-tune:", evaluate_retrieval(eval_set))
+
+    faiss.normalize_L2(
+        doc_embeddings
+    )
+
+
+
+    # ------------------------------------------------------------
+    # IMPORTANT:
+    # rebuild FAISS index after fine tuning
+    # ------------------------------------------------------------
+
+    dimension = doc_embeddings.shape[1]
+
+    index = faiss.IndexFlatIP(
+        dimension
+    )
+
+    index.add(
+        doc_embeddings
+    )
+
+
+
+    # ------------------------------------------------------------
+    # Evaluate AFTER fine tuning
+    # ------------------------------------------------------------
+
+    print(
+        "AFTER fine tuning:",
+        evaluate_retrieval(eval_set)
+    )
