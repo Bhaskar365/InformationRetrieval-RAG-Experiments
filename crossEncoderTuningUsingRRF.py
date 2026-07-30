@@ -149,7 +149,7 @@ def generate_answer(query:str, contexts: list[str]) -> str:
     messages = [
         {"role": "system", "content": "Answer using ONLY the guideline text below if it answers the question. Do not add commentary or notes. If nothing below answers the question, output only: No such rule found."},
         {"role": "user", "content": f"Context:\n{context_block}\n\nQuestion:\n{query}"},
-]
+    ]
 
     prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     inputs = tokenizer(prompt, return_tensors='pt')
