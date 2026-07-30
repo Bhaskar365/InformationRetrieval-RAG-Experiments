@@ -127,3 +127,48 @@ def generate_rag_response(query):
 
 print(generate_rag_response("When is Ethan's birthday?"))
 
+company_db = VectorDatabase()
+
+# Hypothetical company information
+company_information = [
+    "Quantum Horizons Inc. is a pioneering space exploration company founded in 2030.",
+    "The company specializes in developing quantum-powered spacecraft for interplanetary travel.",
+    "With a team of 500 aerospace engineers and quantum physicists, Quantum Horizons is pushing the boundaries of space technology.",
+    "Their flagship project, the 'StarLeap', aims to reduce travel time to Mars from months to just weeks.",
+    "Quantum Horizons has established the first permanent research base on the Moon's far side.",
+    "The company's innovative quantum propulsion system has revolutionized the concept of space travel.",
+    "Headquartered in a state-of-the-art facility in Houston, Quantum Horizons also maintains orbital research stations.",
+    "They've partnered with major space agencies worldwide to advance human presence in the solar system.",
+    "Quantum Horizons' CEO, Dr. Zara Novak, is a former astronaut and a leading expert in quantum mechanics.",
+    "The company's mission is to make interplanetary travel accessible and establish humanity as a multi-planet species."
+]
+
+companyModel = SentenceTransformer('all-MiniLM-L6-v2')
+
+for idx, sentence in enumerate(company_information):
+    embedding = model.encode(sentence)
+    company_db.add_vector(vec_id=f"sentence_{idx}", vector=embedding,metadata={'sentence': sentence})
+
+from crewai.tools import tool
+
+@tool("RAG TOOL")
+def rag_tool(question:str)->str:
+
+    query_vec = companyModel.encode(question)
+
+    results = company_db.search(query_vec, top_k=5)
+    context = "\n".join([f"-{res['metadata']['sentence']}" for res in results])
+
+    prompt = f"""You are a helpful assistant. Use the context below to answer the user's question.
+            Context:
+            {context}
+            Question: {question}
+            Answer:
+            """
+
+    inputs = tokenizer(prompt, return_tensors='pt')
+    outputs = llm_model.generate(**inputs, max_new_tokens=512, do_sample=False)
+    new_tokens = outputs[0][inputs['input_ids'].shape[1]:]
+    return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+
+rag_tool.run("What is Quantum Horizons?")
