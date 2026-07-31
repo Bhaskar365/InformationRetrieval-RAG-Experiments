@@ -153,7 +153,6 @@ This repository is intended for **learning, experimentation, and research** in *
 ---
 
 ## 📖 Required things for running this program
-<br>
 
 * CrewAI package
 * Free Serper API key from _https://serper.dev/_ with 2500 free credit
