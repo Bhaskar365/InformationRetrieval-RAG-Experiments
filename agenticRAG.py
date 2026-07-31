@@ -1,4 +1,10 @@
 
+from dotenv import load_dotenv
+import requests
+import os
+
+load_dotenv()
+
 import numpy as np
 
 class VectorDatabase:
@@ -151,9 +157,10 @@ for idx, sentence in enumerate(company_information):
 
 from crewai.tools import tool
 
-@tool("RAG TOOL")
-def rag_tool(question:str)->str:
+@tool("RAG Tool")
 
+def rag_tool(question: str) -> str:
+    """Tool to search for relevant information from a vector database."""
     query_vec = companyModel.encode(question)
 
     results = company_db.search(query_vec, top_k=5)
@@ -171,4 +178,139 @@ def rag_tool(question:str)->str:
     new_tokens = outputs[0][inputs['input_ids'].shape[1]:]
     return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
 
-rag_tool.run("What is Quantum Horizons?")
+print(rag_tool.run("What is Quantum Horizons?"))
+
+
+api_key = os.getenv("SERPER_API_KEY")
+
+@tool("Web Search Tool")
+def web_search_tool(query: str) -> str:
+    """Tool to search the web for relevant information."""
+    
+    url = "https://google.serper.dev/search"
+    headers = {
+        "X-API-KEY": api_key,
+        "Content-Type": "application/json",
+    }
+    
+    payload = {
+        "q": query
+    }
+
+    response = requests.post(url, headers = headers, json = payload)
+    if response.status_code != 200:
+        raise Exception(f"Request failed with status code: {response.status_code}")
+
+    data = response.json()
+
+    # Get value associated with key "organic" else return []
+    search_results = data.get("organic", [])
+
+    if not search_results:
+        return "No search results found."
+    
+    context = ""
+
+    for result in search_results:
+        title = result.get("title", "")
+        link = result.get("link", "")
+        snippet = result.get("snippet", "")
+        context += f"Title: {title}\nLink: {link}\nSnippet: {snippet}\n\n"
+    return f"Web Search Results:\n{context}"
+
+print(web_search_tool.run("Important AI innovations of 2025"))
+
+from crewai import Agent
+from crewai import LLM
+
+llm = LLM(
+    model="ollama/qwen2.5:1.5b",
+    base_url="http://localhost:11434"
+)
+
+# Agent 1: Retriever Agent
+retriever_agent = Agent(
+    role="Retriever Agent",
+    goal="Retrieve the most relevant information to answer the user's query: {user_query}",
+    backstory=(
+         "You're a helpful agent. "
+        "You're an expert at finding the right information to answer a user's query. "
+        "You are great at following instructions and sequentially picking tools for information retrieval. "
+        "You have decades of experience doing this."
+    ),
+    llm=llm,
+    tools=[web_search_tool],
+    verbose=True
+)
+
+# Agent 2: Customer Support Agent
+customer_support_agent = Agent(
+    role="Senior Customer Support Agent",
+    goal=(
+           "Accurately and concisely answer the user's query: {user_query} using the retrieved information. "
+           "If you are unable to answer the query, apologise and tell that you do not have all the information you need to answer the query."
+    ),
+    backstory=(
+         "You are a helpful senior customer support agent. "
+         "You have decades of experience in answering user queries grounded to accurate information."
+    ),
+    llm=llm,
+    verbose=True,
+)
+
+# Creating Tasks
+
+from crewai import Task
+
+# Task 1: Retriever Task
+retrieval_task = Task(
+    description=(
+        "Retrieve the most relevant information from the given sources to answer the user's query: {user_query}. "
+        "ALWAYS use the RAG Tool first. "
+        "If you cannot find the required information, ONLY THEN use the Web Search Tool. "
+        "DO NOT USE the Web Search Tool if you have sufficient information to accurately answer the user's query."
+    ),
+    expected_output="The most relevant information from the given sources to answer the user's query in a text format.",
+    agent=retriever_agent,
+)
+
+# Task 2: Customer Support Task
+customer_support_task = Task(
+    description=(
+        "Using the retrieved information, accurately and concisely answer the user's query: {user_query}."
+    ),
+    expected_output=(
+        "Concise and accurate response based on the retrieved information given the user query: {user_query}. "
+        "If you are unable to answer the query, apologise and inform the user that you do not have all the necessary information."
+    ),
+    agent=customer_support_agent,
+    context=[retrieval_task],  # This task will use the output from the previous task as its context
+)
+
+# Create Crew
+from crewai import Crew
+from crewai.process import Process
+
+customer_support_crew = Crew(
+    agents = [retriever_agent, customer_support_agent],
+    tasks = [retrieval_task, customer_support_task],
+    verbose = True,
+    process = Process.sequential
+)
+
+# Crew inputs
+
+crew_inputs = {
+    "user_query": "What is the name of the flagship project of the company?",
+}
+
+# Run the crew
+result = customer_support_crew.kickoff(inputs = crew_inputs)
+print(result.raw)
+
+crew_inputs_2 = {
+    "user_query": "Who is the winner of the 2024 Nobel prize in Physics?"
+}
+
+result_2 = customer_support_crew.kickoff(inputs = crew_inputs_2)
+print(result_2.raw)

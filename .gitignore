@@ -4,6 +4,9 @@
 *.onnx
 *.pkl
 *.ckpt
+.env
+
+/.env
 
 .venv/
 
