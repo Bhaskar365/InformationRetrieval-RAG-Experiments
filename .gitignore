@@ -10,6 +10,7 @@
 
 .venv/
 
+
 checkpoints/
 models/
 faiss_index/
@@ -36,3 +37,19 @@ __pycache__
 /bge-small-finetuned-guidelines
 
 bge-small-finetuned-guidelines
+
+productionRAG\docs
+D:\mlTesting\FAISS\productionRAG\docs
+
+/productionRAG/docs
+/D:/mlTesting/FAISS/productionRAG/docs
+
+/D:/mlTesting/FAISS/productionRAG/ingestion/__pycache__
+
+D:/mlTesting/FAISS/productionRAG/ingestion/__pycache__
+
+D:/mlTesting/FAISS/productionRAG/retrieval/__pycache__
+/D:/mlTesting/FAISS/productionRAG/retrieval/__pycache__
+
+
+productionRAG\retrieval\__pycache__
