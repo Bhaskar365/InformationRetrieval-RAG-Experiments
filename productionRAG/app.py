@@ -52,7 +52,6 @@
 
 # print(documentText)
 
-
 from retrieval.rag import ask
 
 while True:

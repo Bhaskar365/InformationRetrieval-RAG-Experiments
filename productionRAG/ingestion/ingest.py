@@ -12,6 +12,8 @@ from langchain_community.document_loaders import (
     DirectoryLoader
 )
 
+from ingestion.chunk import split_documents
+from ingestion.vectorstore import create_vectorstore
 
 DIR_LOC = "D:\\mlTesting\\FAISS"
 
@@ -48,3 +50,12 @@ def load_docs(folder=f"{DIR_LOC}\\productionRAG\\docs") -> list[Document]:
     return docs
 
 documentText = load_docs()
+
+print(f"Loaded {len(documentText)} documents")
+
+chunks = split_documents(documentText)
+
+print(f"Created {len(chunks)} chunks")
+
+db = create_vectorstore(chunks)
+
