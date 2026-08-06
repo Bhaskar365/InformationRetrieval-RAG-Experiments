@@ -48,9 +48,5 @@ def ask(question):
 
     chain = get_rag_chain()
 
-    return chain.invoke(
-        {
-            "query": question
-        }
-    )
+    return chain.invoke({ "query": question })
 

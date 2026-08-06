@@ -16,7 +16,7 @@ def get_retriever():
     )
 
     cross_encoder = HuggingFaceCrossEncoder(
-        model_name="cross-encoder/ms-marco-MiniLM-L-6-v2"
+        model_name="BAAI/bge-reranker-large"
     )
 
     reranker = CrossEncoderReranker(

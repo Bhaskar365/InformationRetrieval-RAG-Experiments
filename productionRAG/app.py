@@ -15,7 +15,7 @@ while True:
 
     for doc in answer["source_documents"]:
         print("=="*100)
-        print("Creator : ", doc.metadata["creator"])
-        print("Total Pages : ", doc.metadata["total_pages"])
+        print("Source : ", doc.metadata.get("filename", "Unknown"))
+        print("Pages : ", doc.metadata.get("page_number", "Unknown"))
 
 

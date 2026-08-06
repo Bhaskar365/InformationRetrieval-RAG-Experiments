@@ -15,6 +15,10 @@ from langchain_community.document_loaders import (
 from ingestion.chunk import split_documents
 from ingestion.vectorstore import create_vectorstore
 
+from pypdf import PdfReader
+
+reader = []
+
 DIR_LOC = "D:\\mlTesting\\FAISS"
 
 LOADERS = {
@@ -39,23 +43,49 @@ def load_docs(folder=f"{DIR_LOC}\\productionRAG\\docs") -> list[Document]:
     ]
 
     for pattern, loader in configs:
-        docs.extend(
-            DirectoryLoader(
+        loaded_docs = DirectoryLoader(
                 Path(folder),
                 glob=pattern,
                 loader_cls=loader,
                 recursive=True,
             ).load()
-        )
+
+        for doc in loaded_docs:
+
+           source = Path(doc.metadata['source'])
+
+           doc.metadata = {
+               "filename" : source.name,
+               "file_type" : source.suffix,
+               "page_number" : doc.metadata.get("page", 0) + 1,
+               "source" : str(source)
+           }
+
+        docs.extend(loaded_docs)
+
     return docs
 
-documentText = load_docs()
+# documentText = load_docs()
 
-print(f"Loaded {len(documentText)} documents")
+# print(documentText)
 
-chunks = split_documents(documentText)
 
-print(f"Created {len(chunks)} chunks")
+# print(f"Loaded {len(documentText)} documents")
 
-db = create_vectorstore(chunks)
+# chunks = split_documents(documentText)
 
+# print(f"Created {len(chunks)} chunks")
+
+# db = create_vectorstore(chunks)
+
+if __name__ == "__main__":
+
+    documentText = load_docs()
+
+    print(f"Loaded {len(documentText)} documents")
+
+    chunks = split_documents(documentText)
+
+    print(f"Created {len(chunks)} chunks")
+
+    db = create_vectorstore(chunks)
