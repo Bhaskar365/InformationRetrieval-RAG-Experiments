@@ -1,6 +1,5 @@
 
 from langchain_chroma import Chroma
-
 from ingestion.embed import embeddings
 
 DB_PATH = "vector_db"

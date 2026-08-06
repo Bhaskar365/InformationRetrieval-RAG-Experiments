@@ -38,7 +38,8 @@ def get_rag_chain():
             chain_type='stuff',
             chain_type_kwargs={
                 'prompt': prompt
-            }
+            },
+            return_source_documents=True
         )
 
     return rag_chain
