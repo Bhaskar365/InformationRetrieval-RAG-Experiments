@@ -97,8 +97,16 @@ conversational_rag_chain = RunnableWithMessageHistory(
     output_messages_key='answer'
 )
 
-def ask(question, session_id='default'):
-    return conversational_rag_chain.invoke(
-        { "input": question },
-        config={ "configurable": { "session_id": session_id } }
-    )
+# def ask(question, session_id='default'):
+#     return conversational_rag_chain.stream(
+#         { "input": question },
+#         config={ "configurable": { "session_id": session_id } }
+#     )
+
+def ask(questions, session_id='default'):
+    for chunk in conversational_rag_chain.stream(
+        {"input": questions},
+        config={"configurable": {"session_id": session_id}}
+    ):
+        if "answer" in chunk:
+            yield chunk["answer"]

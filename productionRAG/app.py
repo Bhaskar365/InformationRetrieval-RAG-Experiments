@@ -9,16 +9,17 @@ while True:
     if question=="exit":
         break
 
-    result = ask(question)
+    # result = ask(question)
+    # print(result)
 
-    print(result)
+    for text in ask(question):
+        print(text, end='', flush=True)
 
-    answer = result["answer"]
-    print(answer)
+    # answer = result["answer"]
 
-    for doc in result["context"]:
-        print("=="*100)
-        print("Source : ", doc.metadata.get("source", "Unknown"))
-        print("Pages : ", doc.metadata.get("page", "Unknown"))
+    # for doc in result["context"]:
+    #     print("=="*100)
+    #     print("Source : ", doc.metadata.get("filename", "Unknown"))
+    #     print("Pages : ", doc.metadata.get("page_number", "Unknown"))
         
 
