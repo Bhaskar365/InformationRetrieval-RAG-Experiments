@@ -15,7 +15,7 @@ from langchain_classic.chains.combine_documents import (
     create_stuff_documents_chain,
 )
 
-from retrieval.retriever import get_retriever
+from retrieval.retriever import get_retriever, debug_retrieval
 
 from langchain_core.runnables import (
     RunnablePassthrough,
@@ -29,7 +29,7 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 llm = ChatOllama(
     model="llama3.2:3b",
-    temperature=0.8,
+    temperature=0.0,
     num_predict=1000,
 )
 
@@ -197,12 +197,14 @@ CONTEXT
 #     question_answer_chain,
 # )
 
+
 # ---------------------------------------------------------------
 # This controls how each Document is inserted into {context}.
 #
 # citation_id comes from:
 # doc.metadata["citation_id"]
 # ---------------------------------------------------------------
+
 document_prompt = ChatPromptTemplate.from_template(
     "[{citation_id}]\n{page_content}"
 )
@@ -244,6 +246,8 @@ conversational_rag_chain = RunnableWithMessageHistory(
     output_messages_key='answer'
 )
 
+
+
 # Streaming API
 
 def ask(question, session_id='default'):
@@ -266,6 +270,8 @@ def ask(question, session_id='default'):
         }
     """
 
+    
+
     retrieved_docs = []
 
     for chunk in conversational_rag_chain.stream(
@@ -282,6 +288,15 @@ def ask(question, session_id='default'):
 
         if "context" in chunk:
             retrieved_docs = chunk["context"]
+
+            print("\n\n========== RETRIEVED DOCUMENTS ==========")
+
+            # for i, doc in enumerate(retrieved_docs):
+            #     print(f"\n--- DOC {i} ---")
+            #     print("Metadata:")
+            #     print(doc.metadata)
+            #     print("\nContent:")
+            #     print(doc.page_content[:1000])
         
         if 'answer' in chunk:
             answer_chunk = chunk['answer']

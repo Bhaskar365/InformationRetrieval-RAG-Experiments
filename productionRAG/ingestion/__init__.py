@@ -1,2 +1,2 @@
 
-from ingestion.ingest import load_docs
+# from ingestion.ingest import load_docs

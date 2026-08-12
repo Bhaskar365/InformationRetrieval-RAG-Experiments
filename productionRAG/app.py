@@ -1,10 +1,12 @@
 
 
 from retrieval.rag import ask
+from retrieval.retriever import debug_retrieval
 
 SESSION_ID = "cli-session"
-
 question = input("\n>>>>>>>>>>>> ")
+
+debug_retrieval(question)
 
 for event in ask(question, session_id=SESSION_ID):
 
@@ -20,10 +22,7 @@ for event in ask(question, session_id=SESSION_ID):
                 f"{source['filename']} "
                 f"(page {source['page']})"
             )
-
 print()
-
-
 
 # while True:
 
