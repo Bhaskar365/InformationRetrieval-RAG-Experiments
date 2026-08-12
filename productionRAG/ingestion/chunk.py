@@ -4,6 +4,7 @@ from collections import defaultdict
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
+
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=1500,
     chunk_overlap=200,
@@ -19,7 +20,13 @@ splitter = RecursiveCharacterTextSplitter(
 def split_documents(documents):
     # return splitter.split_documents(documents)
 
+    
+
     chunks = splitter.split_documents(documents)
+
+     print(
+        f"\nDEBUG: splitter created {len(chunks)} chunks"
+    )
 
     counters = defaultdict(int)
 
@@ -40,3 +47,8 @@ def split_documents(documents):
     return chunks
 
 
+
+print(
+    "USING split_documents FROM:",
+    split_documents.__code__.co_filename
+)
