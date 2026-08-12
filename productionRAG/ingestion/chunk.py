@@ -24,7 +24,7 @@ def split_documents(documents):
 
     chunks = splitter.split_documents(documents)
 
-     print(
+    print(
         f"\nDEBUG: splitter created {len(chunks)} chunks"
     )
 
