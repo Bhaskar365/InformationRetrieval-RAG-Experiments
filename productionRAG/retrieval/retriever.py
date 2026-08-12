@@ -53,7 +53,7 @@ _vector_retriever = _db.as_retriever(
     search_type="similarity",
     search_kwargs={
         "k": 20,
-        # "fetch_k": 40,
+        "fetch_k": 40,
     },
 )
 
