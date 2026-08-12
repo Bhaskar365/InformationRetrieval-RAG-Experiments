@@ -1,8 +1,11 @@
 
-
 from collections import defaultdict
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+
+print("######## LOADED chunk.py ########")
+print("CHUNK FILE:", __file__)
 
 
 splitter = RecursiveCharacterTextSplitter(
@@ -17,16 +20,14 @@ splitter = RecursiveCharacterTextSplitter(
     ]
 )
 
-def split_documents(documents):
-    # return splitter.split_documents(documents)
 
-    
+def split_documents(documents):
+
+    print("\n######## ENTERED split_documents ########")
 
     chunks = splitter.split_documents(documents)
 
-    print(
-        f"\nDEBUG: splitter created {len(chunks)} chunks"
-    )
+    print("Number of chunks:", len(chunks))
 
     counters = defaultdict(int)
 
@@ -34,21 +35,22 @@ def split_documents(documents):
 
         document_id = chunk.metadata.get(
             "document_id",
-            "unknown",
+            "unknown"
         )
 
         chunk_number = counters[document_id]
+
+        chunk_id = f"{document_id}_c{chunk_number}"
+
+        print("CREATING:", chunk_id)
+
+        chunk.metadata["chunk_id"] = chunk_id
+
         counters[document_id] += 1
 
-        chunk.metadata["chunk_id"] = (
-            f"{document_id}_c{chunk_number}"
-        )
+    print("\n######## AFTER CHUNK ID ASSIGNMENT ########")
+
+    for chunk in chunks[:5]:
+        print(chunk.metadata)
 
     return chunks
-
-
-
-print(
-    "USING split_documents FROM:",
-    split_documents.__code__.co_filename
-)
