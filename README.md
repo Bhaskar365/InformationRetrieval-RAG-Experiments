@@ -508,6 +508,9 @@ The next phase of the project focuses on moving from **working RAG implementatio
                                   ▼
                          ┌─────────────────┐
                          │ Metadata + IDs  │
+                         │ document_id     │
+                         │ paper_id        │
+                         │ chunk_id        │
                          └────────┬────────┘
                                   │
                                   ▼
