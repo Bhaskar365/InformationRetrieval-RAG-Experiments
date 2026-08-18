@@ -67,7 +67,7 @@ def add_citation_ids(docs):
         doc.metadata['citation_id'] = i
 
     return docs
-
+ 
 # QA
 qa_prompt = ChatPromptTemplate.from_messages([
     (
@@ -184,19 +184,6 @@ CONTEXT
     ),
     ("human", "{input}"),
 ])
-
-# question_answer_chain = create_stuff_documents_chain(
-#     llm,
-#     qa_prompt,
-# )
-
-
-
-# rag_chain = create_retrieval_chain(
-#     history_aware_retriever,
-#     question_answer_chain,
-# )
-
 
 # ---------------------------------------------------------------
 # This controls how each Document is inserted into {context}.

@@ -9,6 +9,8 @@ from langchain_community.cross_encoders import HuggingFaceCrossEncoder
 from langchain_community.retrievers import BM25Retriever
 from langchain_classic.retrievers import EnsembleRetriever
 
+import json
+
 # OLDER CODE
 
 # def get_retriever():
@@ -47,13 +49,15 @@ from langchain_classic.retrievers import EnsembleRetriever
 
 # vector retriever
 
+VECTOR_K = 20
+
 _db = load_vectorstore()
 
 _vector_retriever = _db.as_retriever(
     search_type="similarity",
     search_kwargs={
-        "k": 20,
-        "fetch_k": 40,
+        "k": VECTOR_K,
+        # "fetch_k": 40,
     },
 )
 
@@ -63,10 +67,12 @@ _documents = load_documents()
 
 _bm25_retriever = BM25Retriever.from_documents(
     _documents,
-    k=20
+    k=VECTOR_K
 )
 
 # Hybrid retriever
+
+#final_score = 0.4 × BM25_contribution + 0.6 × vector_contribution
 
 _hybrid_retriever = EnsembleRetriever(
     retrievers=[
@@ -101,7 +107,46 @@ _retriever = ContextualCompressionRetriever(
 def get_retriever():
     return _retriever
 
+def print_chunks_for_annotation(query):
+
+    docs = _db.similarity_search(query, k=20)
+
+    for rank, doc in enumerate(docs, 1):
+
+        record = {
+            "rank": rank,
+            "chunk_id": doc.metadata.get('chunk_id'),
+            "page_number": doc.metadata.get('page_number'),
+            "content": doc.page_content
+        }
+
+        # print(f"\n{'=' * 80}")
+        # print(f"RANK: {rank}")
+        # print(f"CHUNK ID: {doc.metadata.get('chunk_id')}")
+        # print(f"PAGE: {doc.metadata.get('page_number')}")
+        # print(f"\n{doc.page_content[:1000]}")
+
+        with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\questionAnalysis.jsonl", "a", encoding='utf-8') as f:
+            f.write(json.dumps(record) + "\n")
+
 def debug_retrieval(query):
+
+    vector_results = _db.similarity_search_with_score(
+        query,
+        k=VECTOR_K
+    )
+
+    vector_data = {}
+
+    for rank, (doc, score) in enumerate(vector_results, start=1):
+        chunk_id = doc.metadata.get('chunk_id')
+
+        vector_data[chunk_id] = {
+            "rank": rank,
+            "score": float(score)
+        }
+
+    print("similarity_search_with_score: ", vector_results)
 
     print("\n")
     print("=" * 80)
@@ -118,8 +163,12 @@ def debug_retrieval(query):
     print("=" * 80)
     print("STEP 1 — CHROMA VECTOR SEARCH")
     print("=" * 80)
-
+ 
     vector_docs = _vector_retriever.invoke(query)
+
+    vector_chunks = [
+        doc.metadata.get('chunk_id') for doc in vector_docs
+    ]
 
     print(
         f"\nChroma returned {len(vector_docs)} documents"
@@ -139,6 +188,34 @@ def debug_retrieval(query):
         print("\nCONTENT:")
         print(doc.page_content[:500])
 
+        # record = {
+        #     "query": query,
+        #     # "answer": doc.metadata.get("page_content"),
+        #     "content": doc.page_content[:100],
+        #     "chunk_id": doc.metadata.get("chunk_id"),
+        #     "document_id": doc.metadata.get("document_id"),
+        #     "filename": doc.metadata.get("filename"),
+        #     "page": doc.metadata.get("page_number"),
+        #     # "citation_id": doc.metadata.get("citation_id"),
+        #     # "content": doc.page_content,
+        #     # "rank": i,
+        # }
+
+        # with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\analysis.jsonl", "a", encoding='utf-8') as f:
+        #     f.write(json.dumps(record) + "\n")
+
+        # with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\analysis.txt", "a", encoding='utf-8') as f:
+        #     f.write(f"question:  {query} \n")
+        #     f.write(f"Answer:  {doc.page_content} \n")
+        #     f.write(f"metadata: {doc.metadata} \n")
+        #     f.write(f"citation_id:  {doc.metadata['chunk_id']} \n")
+        #     f.write(f"document_id:  {doc.metadata['document_id']} \n")
+        #     f.write(f"page:  {doc.metadata['page_number']} \n")
+        #     f.write(f"filename:  {doc.metadata['filename']} \n")
+
+        #     f.write(str(print("--------------------------------------------------")))
+        #     f.write(str(print("",end='\n\n')))
+
 
     # =====================================================
     # STEP 2 — BM25
@@ -151,9 +228,23 @@ def debug_retrieval(query):
 
     bm25_docs = _bm25_retriever.invoke(query)
 
+    bm25_chunks = [
+        doc.metadata.get('chunk_id') for doc in bm25_docs
+    ]
+
     print(
         f"\nBM25 returned {len(bm25_docs)} documents"
     )
+
+    bm25_data = {}
+
+    for rank, doc in enumerate(bm25_docs, start=1):
+        chunk_id = doc.metadata.get('chunk_id')
+
+        bm25_data[chunk_id] = {
+            "rank" : rank
+        }
+
 
     for i, doc in enumerate(bm25_docs, start=1):
 
@@ -180,6 +271,19 @@ def debug_retrieval(query):
     print("=" * 80)
 
     hybrid_docs = _hybrid_retriever.invoke(query)
+
+    hybrid_chunks = [
+        doc.metadata.get('chunk_id') for doc in hybrid_docs
+    ]
+
+    hybrid_data = {}
+
+    for rank, doc in enumerate(hybrid_docs, start=1):
+        chunk_id = doc.metadata.get('chunk_id')
+
+        hybrid_data[chunk_id] = {
+            "rank": rank
+        }
 
     print(
         f"\nHybrid returned {len(hybrid_docs)} documents"
@@ -211,8 +315,21 @@ def debug_retrieval(query):
 
     final_docs = _retriever.invoke(query)
 
+    bge_chunks = [
+        doc.metadata.get('chunk_id') for doc in final_docs
+    ]
+
+    bge_data = {}
+
+    for rank, doc in enumerate(final_docs, start=1):
+        chunk_id = doc.metadata.get("chunk_id")
+
+        bge_data[chunk_id] = {
+            "rank": rank
+        }
+
     print(
-        f"\nBGE returned {len(final_docs)} documents"
+        f"\nBGE returned {final_docs}"
     )
 
     for i, doc in enumerate(final_docs, start=1):
@@ -229,5 +346,41 @@ def debug_retrieval(query):
         print("\nCONTENT:")
         print(doc.page_content[:1000])
 
-    print("\n")
-    print("=" * 80)
+        
+        record = {
+            "query": query,
+            # "answer": doc.metadata.get("page_content"),
+            "content": doc.page_content[:100],
+            "chunk_id": doc.metadata.get("chunk_id"),
+            "document_id": doc.metadata.get("document_id"),
+            "filename": doc.metadata.get("filename"),
+            "page": doc.metadata.get("page_number"),
+            # "citation_id": doc.metadata.get("citation_id"),
+            # "content": doc.page_content,
+            "rank": i,
+
+            "vector_chunks": vector_chunks,
+
+            "bm25_chunks": bm25_chunks,
+
+            "hybrid_chunks": hybrid_chunks,
+
+            "bge_chunks": bge_chunks,
+
+            "vector_rank": vector_data.get(chunk_id, {}).get('rank'),
+            "vector_score": vector_data.get(chunk_id, {}).get("score"),
+
+            "bm25_rank": bm25_data.get(chunk_id, {}).get('rank'),
+
+            "hybrid_rank": hybrid_data.get(chunk_id, {}).get("rank"),
+
+            "bge_rank": bge_data.get(chunk_id, {}).get("rank"),
+
+            "relevance":False,
+        }
+
+        with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\analysis.jsonl", "a", encoding='utf-8') as f:
+            f.write(json.dumps(record) + "\n")
+
+    # print("\n")
+    # print("=" * 80)

@@ -1,0 +1,95 @@
+[
+  {
+    "question_id": "q001",
+    "question": "Tell me about the model architecture of the Transformer.",
+    "answer": "The Transformer uses an encoder-decoder architecture. The encoder consists of stacked self-attention and feed-forward layers, while the decoder additionally uses encoder-decoder attention.",
+    "relevant_chunks": [
+      "attentionisallyouneed_c7",
+      "attentionisallyouneed_c11",
+      "attentionisallyouneed_c5",
+      "attentionisallyouneed_c4",
+      "attentionisallyouneed_c12"
+    ]
+  },
+
+  {
+    "question_id": "q002",
+    "question": "Who are the authors of Attention Is All You Need?",
+    "answer": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin.",
+    "relevant_chunks": [
+      "attentionisallyouneed_c0"
+    ]
+  },
+
+  {
+    "question_id": "q003",
+    "question": "How many layers are used in the Transformer encoder and decoder in the base model?",
+    "answer": "Both the encoder and decoder use 6 layers.",
+    "relevant_chunks": [
+      "attentionisallyouneed_c7"
+    ]
+  },
+
+  {
+    "question_id": "q004",
+    "question": "What is the equation for scaled dot-product attention used in the Transformer?",
+    "answer": "Attention(Q,K,V) = softmax(QK^T / sqrt(d_k))V.",
+    "relevant_chunks": [
+        "attentionisallyouneed_c9"
+    ]
+  },
+
+  {
+    "question_id": "q005",
+    "question": "How does multi-head attention differ from performing a single attention function?",
+    "answer": "Multi-head attention uses several attention mechanisms in parallel, allowing the model to focus on different parts of the input sequence simultaneously, which captures a richer and more nuanced understanding of the data compared to a single attention function. This approach enhances performance by enabling the model to learn complex relationships and improving generalization to unseen data.",
+    "relevant_chunks": [
+        "attentionisallyouneed_c10",
+        "attentionisallyouneed_c11",
+        "attentionisallyouneed_c9"
+    ]
+  },
+
+  {
+    "question_id": "q006",
+    "question": "Why does the Transformer use self-attention instead of recurrent layers?",
+    "answer": "The Transformer uses self-attention instead of recurrent layers because it allows for parallel processing of input sequences, making it faster and more efficient for tasks like language modeling and machine translation. This mechanism enables the model to weigh the importance of different words in a context, enhancing its understanding of language",
+    "relevant_chunks": [
+        "attentionisallyouneed_c10",
+        "attentionisallyouneed_c11",
+        "attentionisallyouneed_c9"
+    ]
+  },
+
+  {
+    "question_id": "q007",
+    "question": "What BLEU score did the Transformer big model achieve on WMT 2014 English-to-German translation?",
+    "answer": "The Transformer big model achieved a BLEU score of 28.4 on the WMT 2014 English-to-German translation task",
+    "relevant_chunks": [
+      "attentionisallyouneed_c21",
+      "attentionisallyouneed_c20",
+      "attentionisallyouneed_c0"
+    ]
+  },
+
+  {
+    "question_id": "q008",
+    "question": "What attention mechanism is used in the Transformer decoder, and what is the purpose of masking in that mechanism?",
+    "answer": "The Transformer decoder uses a self-attention mechanism along with a look-ahead mask. The purpose of masking is to enforce an autoregressive constraint, ensuring that the model only attends to previous tokens and not future ones during the generation of the output sequence",
+    "relevant_chunks": [
+      "attentionisallyouneed_c12",
+      "attentionisallyouneed_c8",
+      "attentionisallyouneed_c7"
+    ]
+  },
+
+  {
+    "question_id": "q009",
+    "question": "What is the dimensionality of the Transformer base model? How many attention heads does it use? And what are the key and value dimensions for each head?",
+    "answer": "The Transformer base model has a dimensionality of 768 for its embeddings and uses 12 attention heads. Each attention head has key and value dimensions of 64.",
+    "relevant_chunks": [
+      "attentionisallyouneed_c11",
+      "attentionisallyouneed_c7"
+    ]
+  }
+]

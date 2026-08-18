@@ -1,28 +1,53 @@
 
 
 from retrieval.rag import ask
-from retrieval.retriever import debug_retrieval
+from retrieval.retriever import debug_retrieval, print_chunks_for_annotation
+
+from evaluations.metrics import recall_at_k
 
 SESSION_ID = "cli-session"
-question = input("\n>>>>>>>>>>>> ")
 
-debug_retrieval(question)
+print_chunks_for_annotation(
+    "What is the dimensionality of the Transformer base model? How many attention heads does it use? And what are the key and value dimensions for each head?"
+)
 
-for event in ask(question, session_id=SESSION_ID):
+# question = input("\n>>>>>>>>>>>> ")
 
-    if event["type"] == "answer":
-        print(event["content"], end="", flush=True)
+# citations=' '
 
-    elif event["type"] == "sources":
-        print("\n\nSources:")
+# debug_retrieval(question)
 
-        for source in event["content"]:
-            print(
-                f"[{source['citation_id']}] "
-                f"{source['filename']} "
-                f"(page {source['page']})"
-            )
-print()
+# def modelInput(question):
+
+    # for event in ask(question, session_id=SESSION_ID):
+
+    #     if event["type"] == "answer":
+    #         print(event["content"], end="", flush=True)
+
+    #     elif event["type"] == "sources":
+    #         print("\n\nSources:")
+
+    #         for source in event["content"]:
+    #             citations+=source['citation_id']
+    #             print(
+    #                 f"[{source['citation_id']}] "
+    #                 f"{source['filename']} "
+    #                 f"(page {source['page']})"
+    #             )
+        
+    # print()
+
+#     # retrieved_recall = recall_at_k()
+
+#     return {
+#         "question": question,
+#         "answer": print(event["content"], end="", flush=True),
+#         "retrieved_chunks": citations
+#     }
+
+# modelInput(question)
+
+# OLD CODE
 
 # while True:
 
@@ -30,6 +55,8 @@ print()
 
 #     if question.lower()== "exit":
 #         break
+
+#     debug_retrieval(question)
 
 #     # result = ask(question)
 #     # print(result)
@@ -70,35 +97,35 @@ print()
 
 #     print()
 
-#     # older code
-#     # citations = {}
+# #     # older code
+# #     # citations = {}
 
-#     # for chunk in ask(question):
-#     #     if chunk['type'] == 'token':
-#     #         print(chunk, end='', flush=True)
+# #     # for chunk in ask(question):
+# #     #     if chunk['type'] == 'token':
+# #     #         print(chunk, end='', flush=True)
 
-#     #     elif chunk['type'] == 'citations':
-#     #         citations = chunk['content']
+# #     #     elif chunk['type'] == 'citations':
+# #     #         citations = chunk['content']
 
-#     # print("\n")
+# #     # print("\n")
 
-#     # if citations:
-#     #     print('Sources: ')
+# #     # if citations:
+# #     #     print('Sources: ')
 
-#     #     for citation_id, source in citations.items():
-#     #         print(
-#     #             f"[{citation_id}] "
-#     #             f"{source['filename']} — "
-#     #             f"Page {source['page']}"
-#     #         )
+# #     #     for citation_id, source in citations.items():
+# #     #         print(
+# #     #             f"[{citation_id}] "
+# #     #             f"{source['filename']} — "
+# #     #             f"Page {source['page']}"
+# #     #         )
 
-#     # print()
+# #     # print()
 
-#     # answer = result["answer"]
+# #     # answer = result["answer"]
 
-#     # for doc in result["context"]:
-#     #     print("=="*100)
-#     #     print("Source : ", doc.metadata.get("filename", "Unknown"))
-#     #     print("Pages : ", doc.metadata.get("page_number", "Unknown"))
+# #     # for doc in result["context"]:
+# #     #     print("=="*100)
+# #     #     print("Source : ", doc.metadata.get("filename", "Unknown"))
+# #     #     print("Pages : ", doc.metadata.get("page_number", "Unknown"))
         
 
