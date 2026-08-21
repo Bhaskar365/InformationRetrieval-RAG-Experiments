@@ -8,7 +8,7 @@ from evaluations.metrics import recall_at_k
 SESSION_ID = "cli-session"
 
 print_chunks_for_annotation(
-    "What is the dimensionality of the Transformer base model? How many attention heads does it use? And what are the key and value dimensions for each head?"
+    "Tell me about the model architecture of the Transformer."
 )
 
 # question = input("\n>>>>>>>>>>>> ")

@@ -5,10 +5,7 @@
     "answer": "The Transformer uses an encoder-decoder architecture. The encoder consists of stacked self-attention and feed-forward layers, while the decoder additionally uses encoder-decoder attention.",
     "relevant_chunks": [
       "attentionisallyouneed_c7",
-      "attentionisallyouneed_c11",
-      "attentionisallyouneed_c5",
-      "attentionisallyouneed_c4",
-      "attentionisallyouneed_c12"
+      "attentionisallyouneed_c11"
     ]
   },
 
@@ -86,7 +83,7 @@
   {
     "question_id": "q009",
     "question": "What is the dimensionality of the Transformer base model? How many attention heads does it use? And what are the key and value dimensions for each head?",
-    "answer": "The Transformer base model has a dimensionality of 768 for its embeddings and uses 12 attention heads. Each attention head has key and value dimensions of 64.",
+    "answer": "The Transformer base model has a dimensionality of 512 for its embeddings and uses 8 attention heads. Each attention head has key and value dimensions of 64.",
     "relevant_chunks": [
       "attentionisallyouneed_c11",
       "attentionisallyouneed_c7"
