@@ -131,6 +131,7 @@ import pandas as pd
 import os
 
 from evaluations.vectorOnlyEvaluations import get_retriverVectorOnly
+from evaluations.vector_with_bm25_evaluation import get_vectorPlusBM25
 
 from dotenv import load_dotenv
 
@@ -166,6 +167,60 @@ def run_retrieval_eval_vectorOnly(ground_truth_path):
             })
 
         return eval_results
+
+def run_retrieval_eval_vectorPlusBM25(ground_truth_path):
+
+    with open(ground_truth_path, encoding='utf-8') as f:
+        data = json.load(f)
+
+    # vector_plus_bm25_data = get_vectorPlusBM25()
+    vector_retriever, bm25_retriever = get_vectorPlusBM25()
+
+    eval_results = []
+
+    for item in data:
+        question = item['question']
+
+        relevant_ids = set(item['relevant_chunks'])
+
+        # docs = vector_plus_bm25_data.invoke(question)
+        vector_docs = vector_retriever.invoke(question)
+        bm25_docs = bm25_retriever.invoke(question)
+
+        vector_ids = {
+            doc.metadata['chunk_id'] for doc in vector_docs
+        }
+
+        bm25_ids = {
+            doc.metadata['chunk_id'] for doc in bm25_docs
+        }
+
+        # retrieved_ids = [doc.metadata.get('chunk_id') for doc in docs]        
+
+        overlap_ids = vector_ids & bm25_ids
+        union_ids = vector_ids | bm25_ids
+
+        eval_results.append({
+            'question_id': item['question_id'],
+            'question': question,
+
+            "vector_ids": list(vector_ids),
+            "bm25_ids": list(bm25_ids),
+
+            "overlap_ids": list(overlap_ids),
+            "union_ids": list(union_ids),
+
+            # 'retrieved_ids': retrieved_ids,
+            'relevant_ids': relevant_ids,
+
+            "vector_relevant": list(vector_ids & relevant_ids),
+            "bm25_relevant": list(bm25_ids & relevant_ids),
+
+            "union_relevant": list(union_ids & relevant_ids),
+            "retrieved_ids": list(union_ids)
+        })
+
+    return eval_results
 
 def run_retrieval_eval(ground_truth_path):
 
@@ -220,20 +275,29 @@ def hit_at_k(retrieved_ids, relevant_ids, k):
     return int(any(cid in retrieved_ids for cid in top_k))
 
 # eval_results = run_retrieval_eval(f"{GROUND_TRUTH_FILE}")
-eval_results = run_retrieval_eval_vectorOnly(f"{GROUND_TRUTH_FILE}")
+# eval_results = run_retrieval_eval_vectorOnly(f"{GROUND_TRUTH_FILE}")
+eval_results = run_retrieval_eval_vectorPlusBM25(f"{GROUND_TRUTH_FILE}")
 
 scored = []
 
 for r in eval_results:
     scored.append({
         "question_id": r['question_id'],
-        "precision@3": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 3),
+        # "precision@3": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 3),
         "recall@3": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 3),
-        "precision@5": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 5),
+        # "precision@5": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 5),
         "recall@5": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 5),
-        "precision@7": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 7),
+        # "precision@7": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 7),
         "recall@7": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 7),
-        "precision@10": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 10),
+        # "precision@10": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 10),
+
+        # for vector+bm25
+        "precision@3": precision_at_k(r['vector_ids'], r['relevant_ids'], 3),
+        "precision@5": precision_at_k(r['vector_ids'], r['relevant_ids'], 5),
+        "precision@7": precision_at_k(r['vector_ids'], r['relevant_ids'], 7),
+        "precision@10": precision_at_k(r['vector_ids'], r['relevant_ids'], 10),
+
+
         "recall@10": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 10),
         "mrr@5": reciprocal_rank_at_k(r["retrieved_ids"], r["relevant_ids"],3),
         "mrr@5": reciprocal_rank_at_k(r["retrieved_ids"], r["relevant_ids"],5),
@@ -248,7 +312,10 @@ for r in eval_results:
 df = pd.DataFrame(scored)
 print(df)
 
-with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vectorstoreOnly_report.jsonl", "w", encoding='utf-8') as f:
+# with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vectorstoreOnly_report.jsonl", "w", encoding='utf-8') as f:
+#     f.write(json.dumps(scored)+ "\n")
+
+with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vectorstorePlustBM25_report.jsonl", "w", encoding='utf-8') as f:
     f.write(json.dumps(scored)+ "\n")
 
 print("\nAverages:\n", df.mean(numeric_only=True))
