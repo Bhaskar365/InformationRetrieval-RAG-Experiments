@@ -93,7 +93,7 @@ _cross_encoder = HuggingFaceCrossEncoder(
 
 _reranker = CrossEncoderReranker(
     model=_cross_encoder,
-    top_n=5,
+    top_n=10,
 )
 
 # final retriever

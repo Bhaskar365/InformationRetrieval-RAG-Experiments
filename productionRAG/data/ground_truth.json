@@ -52,9 +52,9 @@
     "question": "Why does the Transformer use self-attention instead of recurrent layers?",
     "answer": "The Transformer uses self-attention instead of recurrent layers because it allows for parallel processing of input sequences, making it faster and more efficient for tasks like language modeling and machine translation. This mechanism enables the model to weigh the importance of different words in a context, enhancing its understanding of language",
     "relevant_chunks": [
-        "attentionisallyouneed_c10",
-        "attentionisallyouneed_c11",
-        "attentionisallyouneed_c9"
+        "attentionisallyouneed_c16",
+        "attentionisallyouneed_c4",
+        "attentionisallyouneed_c5"
     ]
   },
 
