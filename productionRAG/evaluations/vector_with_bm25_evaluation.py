@@ -22,16 +22,5 @@ _bm25_documents = BM25Retriever.from_documents(
     k=VECTOR_K
 )
 
-# vector_ids = {
-#    doc.metadata['doc_id'] for doc in _vector_retriever
-# } 
-
-# bm25_ids = {
-#     doc.metadata['doc_id'] for doc in _bm25_documents
-# }
-
-# _overlap = vector_ids & bm25_ids
-
-
 def get_vectorPlusBM25():
     return _vector_retriever, _bm25_documents
