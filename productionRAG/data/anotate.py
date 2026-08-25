@@ -1,131 +1,5 @@
 
-
-# Runs:
-
-# BM25
-# Vector
-# Hybrid
-# BGE
-
-# import json
-# import math
-# from collections import defaultdict
-# import os
-
-# from retrieval.rag import ask
-
-# from dotenv import load_dotenv
-
-# load_dotenv()
-
-# os.getenv()
-
-# GROUND_TRUTH_FILE = os.getenv("DATA_JSONL_PATH\\ground_truth.json")
-# RAG_OUTPUT_FILE = "DATA_JSONL_PATH\\questionAnalysis.jsonl"
-# K_VALUES = [1,3,5,10,20]
-
-# def precision_at_k(retrieved, relevant, k):
-
-#     retrieved_k = retrieved[:k]
-#     relevant = set(relevant)
-
-#     hits = sum(chunk in relevant for chunk in retrieved_k)
-
-#     return hits / k
-
-
-# def recall_at_k(retrieved, relevant, k):
-
-#     retrieved_k = retrieved[:k]
-#     relevant = set(relevant)
-
-#     if not relevant:
-#         return 0.0
-
-#     hits = sum(chunk in relevant for chunk in retrieved_k)
-
-#     return hits / len(relevant)
-
-# def essential_recall_at_k(retrieved, essential, k):
-
-#     retrieved_k = set(retrieved[:k])
-#     essential = set(essential)
-
-#     if not essential:
-#         return 0.0
-
-#     return len(retrieved_k & essential) / len(essential)
-
-
-# def reciprocal_rank(retrieved, relevant, k):
-#     relevant = set(relevant)
-
-#     for rank, chunk in enumerate(retrieved[:k], start=1):
-#         if chunk in relevant:
-#             return 1.0 / rank
-
-#     return 0.0
-
-
-# import json
-
-# SESSION_ID = "cli-session"
-
-# with open(f'DATA_JSONL_PATH\\ground_truth.json') as f:
-#     ground_truth = json.load(f)
-
-# results = []
-
-# for item in ground_truth:
-#     question = item['question']
-
-#     rag_result = rag_system(question)
-
-#     retrieved = rag_result['retrieved_chunks']
-#     generated_answer = rag_result['answer']
-
-#     result = {
-#         "question_id": item['question_id'],
-#         "precision@5": precision_at_k(retrieved, item['relevant_chunks'], 5),
-#         'recall@5': recall_at_k(retrieved, item['relevant_chunks'], 5),
-#         'essential_recall@5': essential_recall_at_k(retrieved, item['essential_chunks'], 5),
-#         "mrr@5": reciprocal_rank(retrieved, item['relevant_chunks'], 5),
-#         "generated_answer": generated_answer
-#     }
-
-#     results.append(result)
-
-# import numpy as np
-
-# metrics = [
-#     "precision@5",
-#     "recall@5",
-#     "essential_recall@5",
-#     "mrr@5"
-# ]
-
-# for metric in metrics:
-#     score = np.mean([r[metric] for r in results])
-#     print(f"{metric}: {score:.4f}")
-
-
-
-#     # for chunk in ask(question, session_id=SESSION_ID):
-
-#     #     if chunk["type"] == "answer":
-
-#     #         rag_result = {
-#     #             chunk["content"],
-
-#     #         }
-
-            
-
-#         # rag_result = 
-
-
 import json
-# from retrieval.retriever import get_retriever
 from retrieval.retriever import get_retriever
 import pandas as pd
 import os
@@ -187,38 +61,80 @@ def run_retrieval_eval_vectorPlusBM25(ground_truth_path):
         vector_docs = vector_retriever.invoke(question)
         bm25_docs = bm25_retriever.invoke(question)
 
-        vector_ids = {
-            doc.metadata['chunk_id'] for doc in vector_docs
-        }
+        vector_ids = [
+            doc.metadata['chunk_id']
+            for doc in vector_docs
+        ]
 
-        bm25_ids = {
-            doc.metadata['chunk_id'] for doc in bm25_docs
-        }
+        bm25_ids = [
+            doc.metadata['chunk_id']
+            for doc in bm25_docs
+        ]
 
-        # retrieved_ids = [doc.metadata.get('chunk_id') for doc in docs]        
+        vector_id_set = set(vector_ids)
+        bm25_id_set = set(bm25_ids)
 
-        overlap_ids = vector_ids & bm25_ids
-        union_ids = vector_ids | bm25_ids
+        overlap_ids = list(
+            vector_id_set & bm25_id_set
+        )
+
+        union_ids = list(vector_ids)
+
+        for cid in bm25_ids:
+            if cid not in union_ids:
+                union_ids.append(cid)
 
         eval_results.append({
-            'question_id': item['question_id'],
-            'question': question,
+            "question_id": item["question_id"],
+            "question": question,
 
-            "vector_ids": list(vector_ids),
-            "bm25_ids": list(bm25_ids),
+            "vector_ids": vector_ids,
+            "bm25_ids": bm25_ids,
 
-            "overlap_ids": list(overlap_ids),
-            "union_ids": list(union_ids),
+            "overlap_ids": overlap_ids,
+            "union_ids": union_ids,
 
-            # 'retrieved_ids': retrieved_ids,
-            'relevant_ids': relevant_ids,
+            "relevant_ids": list(relevant_ids),
 
-            "vector_relevant": list(vector_ids & relevant_ids),
-            "bm25_relevant": list(bm25_ids & relevant_ids),
+            "vector_relevant": [
+                cid for cid in vector_ids
+                if cid in relevant_ids
+            ],
 
-            "union_relevant": list(union_ids & relevant_ids),
-            "retrieved_ids": list(union_ids)
+            "bm25_relevant": [
+                cid for cid in bm25_ids
+                if cid in relevant_ids
+            ],
+
+            "union_relevant": [
+                cid for cid in union_ids
+                if cid in relevant_ids
+            ],
+
+            "retrieved_ids": union_ids
         })
+
+
+       
+        # eval_results.append({
+        #     'question_id': item['question_id'],
+        #     'question': question,
+
+        #     "vector_ids": list(vector_ids),
+        #     "bm25_ids": list(bm25_ids),
+
+        #     "overlap_ids": list(overlap_ids),
+        #     "union_ids": list(union_ids),
+
+        #     # 'retrieved_ids': retrieved_ids,
+        #     'relevant_ids': relevant_ids,
+
+        #     "vector_relevant": list(vector_ids & relevant_ids),
+        #     "bm25_relevant": list(bm25_ids & relevant_ids),
+
+        #     "union_relevant": list(union_ids & relevant_ids),
+        #     "retrieved_ids": list(union_ids)
+        # })
 
     return eval_results
 
@@ -272,37 +188,51 @@ def reciprocal_rank_at_k(retrieved_ids, relevant_ids, k):
 
 def hit_at_k(retrieved_ids, relevant_ids, k):
     top_k = retrieved_ids[:k]
-    return int(any(cid in retrieved_ids for cid in top_k))
+    return int(any(cid in relevant_ids for cid in top_k))
 
 # eval_results = run_retrieval_eval(f"{GROUND_TRUTH_FILE}")
-# eval_results = run_retrieval_eval_vectorOnly(f"{GROUND_TRUTH_FILE}")
-eval_results = run_retrieval_eval_vectorPlusBM25(f"{GROUND_TRUTH_FILE}")
+eval_results = run_retrieval_eval_vectorOnly(f"{GROUND_TRUTH_FILE}")
+# eval_results = run_retrieval_eval_vectorPlusBM25(f"{GROUND_TRUTH_FILE}")
 
 scored = []
 
 for r in eval_results:
     scored.append({
         "question_id": r['question_id'],
-        # "precision@3": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 3),
+        "precision@3": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 3),
         "recall@3": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 3),
-        # "precision@5": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 5),
+        "precision@5": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 5),
         "recall@5": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 5),
-        # "precision@7": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 7),
+        "precision@7": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 7),
         "recall@7": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 7),
-        # "precision@10": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 10),
+        "precision@10": precision_at_k(r['retrieved_ids'], r['relevant_ids'], 10),
 
         # for vector+bm25
-        "precision@3": precision_at_k(r['vector_ids'], r['relevant_ids'], 3),
-        "precision@5": precision_at_k(r['vector_ids'], r['relevant_ids'], 5),
-        "precision@7": precision_at_k(r['vector_ids'], r['relevant_ids'], 7),
-        "precision@10": precision_at_k(r['vector_ids'], r['relevant_ids'], 10),
+        # "precision@3": precision_at_k(r['vector_ids'], r['relevant_ids'], 3),
+        # "precision@5": precision_at_k(r['vector_ids'], r['relevant_ids'], 5),
+        # "precision@7": precision_at_k(r['vector_ids'], r['relevant_ids'], 7),
+        # "precision@10": precision_at_k(r['vector_ids'], r['relevant_ids'], 10),
 
 
         "recall@10": recall_at_k(r["retrieved_ids"], r["relevant_ids"], 10),
-        "mrr@5": reciprocal_rank_at_k(r["retrieved_ids"], r["relevant_ids"],3),
-        "mrr@5": reciprocal_rank_at_k(r["retrieved_ids"], r["relevant_ids"],5),
-        "mrr@5": reciprocal_rank_at_k(r["retrieved_ids"], r["relevant_ids"],7),
-        "mrr@5": reciprocal_rank_at_k(r["retrieved_ids"], r["relevant_ids"],10),
+
+        "mrr@3": reciprocal_rank_at_k(
+            r["retrieved_ids"], 
+            r["relevant_ids"],
+            3),
+        "mrr@5": reciprocal_rank_at_k(
+            r["retrieved_ids"], 
+            r["relevant_ids"],
+            5),
+        "mrr@7": reciprocal_rank_at_k(
+            r["retrieved_ids"], 
+            r["relevant_ids"],
+            7),
+        "mrr@10": reciprocal_rank_at_k(
+            r["retrieved_ids"], 
+            r["relevant_ids"],
+            10),
+
         "hit@1": hit_at_k(r["retrieved_ids"], r["relevant_ids"], 1),
         "hit@3": hit_at_k(r["retrieved_ids"], r["relevant_ids"], 3),
         "hit@5": hit_at_k(r["retrieved_ids"], r["relevant_ids"], 5),
@@ -315,16 +245,8 @@ print(df)
 # with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vectorstoreOnly_report.jsonl", "w", encoding='utf-8') as f:
 #     f.write(json.dumps(scored)+ "\n")
 
-with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vectorstorePlustBM25_report.jsonl", "w", encoding='utf-8') as f:
-    f.write(json.dumps(scored)+ "\n")
+# with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vectorstorePlustBM25_report.jsonl", "w", encoding='utf-8') as f:
+#     f.write(json.dumps(scored)+ "\n")
 
 print("\nAverages:\n", df.mean(numeric_only=True))
 
-
-
-# from ingestion.vectorstore import load_vectorstore
-
-# db = load_vectorstore()
-# for cid in ["attentionisallyouneed_c9", "attentionisallyouneed_c10", "attentionisallyouneed_c11"]:
-#     result = db.get(where={"chunk_id": cid})
-#     print(cid, result["documents"])
