@@ -1,6 +1,5 @@
 
 import json
-from retrieval.retriever import get_retriever
 import pandas as pd
 import os
 import math
@@ -8,6 +7,7 @@ import math
 from evaluations.vectorOnlyEvaluations import get_retriverVectorOnly
 from evaluations.vector_with_bm25_evaluation import get_vectorPlusBM25
 from evaluations.vectorBM25WithEnsembleRRFEvaluation import get_retriever_EnsembleRetriever
+from evaluations.fullEvaluationWithCrossEncoder import get_retriever_cross_encoder
 
 from dotenv import load_dotenv
 
@@ -104,33 +104,6 @@ def run_retrieval_eval_BM25(ground_truth_path):
 
     return eval_results
 
-def run_retrieval_eval(ground_truth_path):
-
-    with open(ground_truth_path, encoding='utf-8') as f:
-        gt_data = json.load(f)
-
-        retriever = get_retriever()
-
-        eval_results = []
-
-        for item in gt_data:
-            question = item['question']
-
-            relevant_ids = set(item['relevant_chunks'])
-
-            docs = retriever.invoke(question) 
-            retrieved_ids = [doc.metadata.get('chunk_id') for doc in docs]
-
-            eval_results.append({
-                "question_id": item["question_id"],
-                "question": question,
-                "retrieved_ids": retrieved_ids,
-                "relevant_ids": relevant_ids
-            })
-
-        return eval_results
-
-
 def run_retrieval_eval_vectorPlusBM25PlusRRF(ground_truth_path):
 
     with open(ground_truth_path, encoding='utf-8') as f:
@@ -172,7 +145,48 @@ def run_retrieval_eval_vectorPlusBM25PlusRRF(ground_truth_path):
         })
 
     return eval_results   
+
+def run_retrieval_eval_allWithCrossEncoder(ground_truth_path):
+    with open(ground_truth_path, encoding='utf-8') as f:
+                data = json.load(f)
     
+    retriever = get_retriever_cross_encoder()
+    
+    eval_results = []
+
+    for item in data:
+        question = item['question']
+
+        relevant_ids = set(item['relevant_chunks'])
+
+        docs = retriever.invoke(question)
+        retrieved_ids = [doc.metadata.get('chunk_id') for doc in docs]
+
+        ks = [3, 5, 7, 10, 15, 20]
+        
+        ndcg_scores = {}
+        
+        for k in ks:
+            ndcg_scores[f"ndcg@{k}"] = ndcg_at_k(
+            retrieved_ids,
+            relevant_ids,
+            k
+        )
+
+        assert len(retrieved_ids) == len(set(retrieved_ids)), (
+                f"Duplicate chunk IDs for {item['question_id']}: {retrieved_ids}"
+            )
+
+        eval_results.append({
+            "question_id": item['question_id'],
+            "question": question,
+            "retrieved_ids": retrieved_ids,
+            "relevant_ids": relevant_ids,
+            "ndcg_scores": {**ndcg_scores},
+        })
+
+    return eval_results   
+
 
 
 def precision_at_k(retrieved_ids, relevant_ids, k):
@@ -235,13 +249,10 @@ def ndcg_at_k(retrieved_ids, relevant_ids, k):
 
     return dcg/idcg    
 
-# eval_results = run_retrieval_eval(f"{GROUND_TRUTH_FILE}")
 # eval_results = run_retrieval_eval_vectorOnly(f"{GROUND_TRUTH_FILE}")
 # eval_results = run_retrieval_eval_BM25(f"{GROUND_TRUTH_FILE}")
-eval_results = run_retrieval_eval_vectorPlusBM25PlusRRF(f"{GROUND_TRUTH_FILE}")
-
-
-
+# eval_results = run_retrieval_eval_vectorPlusBM25PlusRRF(f"{GROUND_TRUTH_FILE}")
+eval_results = run_retrieval_eval_allWithCrossEncoder(f"{GROUND_TRUTH_FILE}")
 
 scored = []
 
@@ -317,7 +328,10 @@ print(df)
 # with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\BM25_report.jsonl", "w", encoding='utf-8') as f:
 #     f.write(json.dumps(scored)+ "\n")
 
-with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vector+BM25+RRF_report.jsonl", "w", encoding='utf-8') as f:
+# with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\vector+BM25+RRF_report.jsonl", "w", encoding='utf-8') as f:
+#     f.write(json.dumps(scored)+ "\n")
+
+with open("D:\\mlTesting\\FAISS\\productionRAG\\reports\\fullReport.jsonl", "w", encoding='utf-8') as f:
     f.write(json.dumps(scored)+ "\n")
 
 

@@ -11,42 +11,6 @@ from langchain_classic.retrievers import EnsembleRetriever
 
 import json
 
-# OLDER CODE
-
-# def get_retriever():
-
-#     db = load_vectorstore()
-
-#     base_retriever = db.as_retriever(
-#         search_type="mmr",
-#         search_kwargs={"k": 20, "fetch_k": 40}
-#     )
-
-#     cross_encoder = HuggingFaceCrossEncoder(
-#         model_name="BAAI/bge-reranker-large"
-#     )
-
-#     reranker = CrossEncoderReranker(
-#         model=cross_encoder,
-#         top_n=5
-#     )
-
-#     return ContextualCompressionRetriever(
-#         base_compressor=reranker,
-#         base_retriever=base_retriever
-#     )
-
-    # MMR only used if duplicates prob is very high, otherwise good data may get discarded
-    # return db.as_retriever(
-    #     search_type="mmr",
-    #     search_kwargs={
-    #         "k" : 5,
-    #         "fetch_k" : 20
-    #     }
-    # )
-
-# retriever.py
-
 # vector retriever
 
 VECTOR_K = 20
@@ -109,24 +73,41 @@ def get_retriever():
 
 def print_chunks_for_annotation(query):
 
-    docs = _db.similarity_search(query, k=20)
+    # docs = _db.similarity_search(query, k=20)
 
-    for rank, doc in enumerate(docs, 1):
+    # for rank, doc in enumerate(docs, 1):
+
+    #     record = {
+    #         "rank": rank,
+    #         "chunk_id": doc.metadata.get('chunk_id'),
+    #         "page_number": doc.metadata.get('page_number'),
+    #         "content": doc.page_content
+    #     }
+
+    #     with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\questionAnalysis.jsonl", "a", encoding='utf-8') as f:
+    #         f.write(json.dumps(record) + "\n")
+
+    docs_and_scores = _db.similarity_search_with_score(
+        query,
+        k=20
+    )
+
+    for rank, (doc, score) in enumerate(docs_and_scores, 1):
 
         record = {
             "rank": rank,
-            "chunk_id": doc.metadata.get('chunk_id'),
-            "page_number": doc.metadata.get('page_number'),
+            "score": float(score),
+            "chunk_id": doc.metadata.get("chunk_id"),
+            "page_number": doc.metadata.get("page_number"),
+            "document_id": doc.metadata.get("document_id"),
             "content": doc.page_content
         }
 
-        # print(f"\n{'=' * 80}")
-        # print(f"RANK: {rank}")
-        # print(f"CHUNK ID: {doc.metadata.get('chunk_id')}")
-        # print(f"PAGE: {doc.metadata.get('page_number')}")
-        # print(f"\n{doc.page_content[:1000]}")
-
-        with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\questionAnalysis.jsonl", "a", encoding='utf-8') as f:
+        with open(
+            "D:\\mlTesting\\FAISS\\productionRAG\\data\\questionAnalysis.jsonl",
+            "a",
+            encoding="utf-8"
+        ) as f:
             f.write(json.dumps(record) + "\n")
 
 def debug_retrieval(query):

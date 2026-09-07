@@ -88,5 +88,483 @@
       "attentionisallyouneed_c11",
       "attentionisallyouneed_c7"
     ]
+  },
+  {
+    "question_id": "q010",
+    "question": "Summarize the paper Structural Damage Detection In Enclosed Spaces: Using Machine Learning",
+    "answer": "The paper “Structural Damage Detection In Enclosed Spaces: Using Machine Learning” presents an AI-powered system for automatically detecting structural damage in difficult-to-access enclosed areas of ships, such as ballast tanks, cargo holds, void spaces, and engine rooms.The proposed system uses drones or robotic crawlers equipped with RGB and infrared cameras to capture high-resolution images. Image preprocessing techniques such as CLAHE, gamma correction, and bilateral filtering are applied to improve image quality under poor or uneven lighting conditions.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c0",
+      "ijirt206678_paperstracturaldamage_c2",
+      "ijirt206678_paperstracturaldamage_c3",
+      "ijirt206678_paperstracturaldamage_c9",
+      "ijirt206678_paperstracturaldamage_c13"
+    ]
+  },
+  {
+    "question_id": "q011",
+    "question": "What is the primary objective of using machine learning for structural damage detection in enclosed spaces from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "The paper states that the project aims to develop an AI-based damage detection system tailored for enclosed spaces in ships and It uses cameras/sensors and machine learning to identify cracks, corrosion spots, deformation, and other structural anomalies. The system generates labeled damage areas and severity levels. The experimental results show detection of corrosion, cracks, dents, breakage, and surface defects.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c0",
+      "ijirt206678_paperstracturaldamage_c1",
+      "ijirt206678_paperstracturaldamage_c2",
+      "ijirt206678_paperstracturaldamage_c10",
+      "ijirt206678_paperstracturaldamage_c28"
+    ]
+  },
+  {
+    "question_id": "q012",
+    "question": "Which type of machine learning is commonly used when images of damaged and undamaged structures are provided with labels from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "The proposed system uses supervised learning.",    
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c14",
+      "ijirt206678_paperstracturaldamage_c10",
+      "ijirt206678_paperstracturaldamage_c1"
+    ]
+  },
+  {
+    "question_id": "q013",
+    "question": "Which type of data is particularly useful for detecting cracks and other visible structural damage from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "Visual/image data, particularly high-resolution RGB and infrared images. These images are especially useful for detecting visible structural damage such as cracks, corrosion, dents, and deformation.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c3",
+      "ijirt206678_paperstracturaldamage_c14",
+      "ijirt206678_paperstracturaldamage_c9",
+      "ijirt206678_paperstracturaldamage_c13",
+      "ijirt206678_paperstracturaldamage_c10"
+    ]
+  },
+  {
+    "question_id": "q014",
+    "question": "Which metric measures the proportion of correctly predicted damaged/undamaged cases among all cases from the paper Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "Accuracy",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c18",
+      "ijirt206678_paperstracturaldamage_c19"
+    ]
+  },
+  {
+    "question_id": "q015",
+    "question": "Which metric measures how many of the structures identified as damaged were actually damaged from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "Precision",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c18"
+    ]
+  },
+  {
+    "question_id": "q016",
+    "question": "Which metric measures the ability of the model to correctly identify actual damaged structures from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "Recall",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c18"
+    ]
+  },
+  {
+    "question_id": "q017",
+    "question": "Why is the F1-score useful in structural damage detection from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": " F1-score is the harmonic mean of precision and recall and provides a balanced measure of overall detection performance, especially with class imbalance.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c18"
+    ]
+  },
+  {
+    "question_id": "q018",
+    "question": "What is a false negative in structural damage detection from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "A false negative occurs when structural damage is actually present, but the detection model fails to identify it. This is important because missed damage—such as a fatigue crack—can remain untreated and potentially worsen, creating safety and structural risks.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c18",
+      "ijirt206678_paperstracturaldamage_c27",
+      "ijirt206678_paperstracturaldamage_c12",
+      "ijirt206678_paperstracturaldamage_c10"
+    ]
+  },
+  {
+    "question_id": "q019",
+    "question": "Why can machine learning be beneficial for damage detection in enclosed spaces?",
+    "answer": "ML is beneficial because enclosed spaces are difficult and hazardous to inspect manually, while ML can automatically analyze camera/sensor data, detect subtle damage accurately, work with robotic/drone inspection, and provide fast and reliable results.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c2",
+      "ijirt206678_paperstracturaldamage_c9",
+      "ijirt206678_paperstracturaldamage_c10"
+    ]
+  },
+  {
+    "question_id": "q020",
+    "question": "How does model performance change under poor lighting, occlusion, dust, or limited visibility from the paper - Structural Damage Detection In Enclosed Spaces: Using Machine Learning?",
+    "answer": "The model performs well overall in challenging enclosed environments, but its performance can decrease slightly under extreme lighting and occlusion conditions. The system addresses poor visibility using preprocessing techniques such as CLAHE, gamma correction, and bilateral filtering, which improve contrast, brightness, and image quality. It also uses brightness/contrast augmentation and includes low-light and infrared images in the dataset to improve generalization.",
+    "relevant_chunks": [
+      "ijirt206678_paperstracturaldamage_c29",
+      "ijirt206678_paperstracturaldamage_c16",
+      "ijirt206678_paperstracturaldamage_c14"
+    ]
+  },
+  {
+    "question_id": "q021",
+    "question": "What is the main research problem addressed in the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows, and why is format robustness important for LLM document workflows?",
+    "answer": "The main research problem addressed in “Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows” is whether LLM-based document workflows can maintain consistent and reliable behavior when the same semantic content is provided in different document formats, such as TXT, Markdown, CSV, or JSON.",    
+    "relevant_chunks": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c0",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c4",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c1",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c3"
+    ]
+  },
+  {
+    "question_id": "q022",
+    "question": "What different document formats are evaluated in the study, and how does changing the format affect the performance of LLM-based systems? from the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows",
+    "answer": "The study evaluates four document formats: TXT, Markdown (MD), JSON, and CSV. It finds that changing the document format can significantly affect the performance of LLM-based systems, even when the underlying information remains the same. TXT and Markdown generally give better and more robust performance, while JSON and especially CSV can cause substantial accuracy drops and changes in the evidence used by the model. This shows that document format is an important factor in the reliability and consistency of LLM-based document workflows.",
+    "relevant_chunks": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c2",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c5",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c35",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c39",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c1"
+    ]
+  },
+  {
+    "question_id": "q023",
+    "question": "How does the paper define “format robustness” in the context of document understanding and retrieval for the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows?",
+    "answer": "Format robustness means that an LLM document workflow should behave consistently when the same semantic information is represented in different file formats. The paper measures this through consistency of the final decision, the evidence/reasoning used, and execution stability across formats.",
+    "relevant_chunks": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c5",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c20",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c6",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c4"
+    ]
+  },
+  {
+    "question_id": "q024",
+    "question": "What experimental methodology is used to measure the impact of document formatting on RAG performance for the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows?",
+    "answer": "The paper uses a format-aware metamorphic testing framework to measure how changing document format affects LLM document workflows. First, each original input is converted into semantically equivalent versions in four formats: TXT, Markdown (MD), JSON, and CSV, while keeping the underlying content and instructions unchanged. These equivalent documents are then processed by four production-level LLM workflows across four high-stakes datasets. The researchers compare the outputs across formats using three metamorphic relations: decision outcome invariance (MR1), reasoning evidence invariance (MR2), and execution stability invariance (MR3). They quantify violations using Metamorphic Relation Violation Rate (MRV) and additionally measure accuracy, fairness, and stability. Each workflow-format combination is executed repeatedly, with three independent executions, and bootstrap resampling is used to calculate means and 95% confidence intervals.",
+    "relevant_chunks": [
+        "not_as_sweet_by_another_name_an_empirical_study_of_c25",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c6",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c40",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c39"
+    ]
+  },
+  {
+    "question_id": "q025",
+    "question": "Which document transformations or formatting changes cause the largest degradation in retrieval or question-answering performance for the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows?",
+    "answer": "The paper finds that structured document formats, especially CSV, cause the largest degradation in LLM document question-answering and evidence extraction. In contrast, TXT and Markdown (MD) generally maintain higher performance. CSV produces the most severe errors because its tabular structure, field boundaries, and serialization can change which information becomes salient to the LLM. For example, on the Construct dataset, average accuracy falls from 93.05% with TXT to 67.92% with CSV, with the largest format-related accuracy gap reaching 56%.",
+    "relevant_chunks": [
+        "not_as_sweet_by_another_name_an_empirical_study_of_c38",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c35",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c59"
+    ]
+  },
+  {
+    "question_id": "q026",
+    "question": "How does document formatting influence the retrieval stage of a RAG pipeline compared with the generation stage in regards to the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows?",
+    "answer": "Formatting primarily disrupts the information available to the model through document parsing, chunking, and representation, and this upstream distortion then manifests as changes in evidence selection, reasoning, and final generation.",
+    "relevant_chunks": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c67",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c63",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c20"
+    ]
+  },
+  {
+    "question_id": "q027",
+    "question": "If the same information is presented in two different formats, why might an LLM-based RAG system retrieve one version more successfully than the other to the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows?",
+    "answer": "An LLM-based RAG system may retrieve one format more successfully because different formats are parsed, chunked, and serialized differently, producing different context representations even when the underlying semantic information is identical. These structural differences can introduce noise or change how relevant information is exposed to the retrieval and reasoning components. Thus, the format itself can influence which evidence is successfully retrieved and used. The paper specifically identifies this as an important issue for future RAG research, noting that format variations could skew dynamic retrieval distributions.",
+    "relevant_chunks": [
+        "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c2",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c18",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c23",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c35"
+    ]
+  },
+  {
+    "question_id": "q028",
+    "question": "Summarize the paper Not as Sweet by Another Name: An Empirical Study of Format Robustness in LLM Document Workflows",
+    "answer": "The paper demonstrates that semantic equivalence does not guarantee behavioral equivalence in LLM document workflows. The way information is represented and processed can substantially influence the system's accuracy, reasoning, and stability, highlighting the need for format-aware testing and safeguards.",
+    "relevant_chunks": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c0",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c6",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c8",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c68",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c9",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c17",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c35",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c64"
+    ]
+  },
+  {
+    "question_id": "q029",
+    "question": "Suppose a RAG system performs well on clean HTML documents but poorly on PDFs with tables, headings, and unusual layouts. What lessons from the paper could be used to diagnose and improve the system?",
+     "answer": "The paper shows that LLM-based document workflows can be sensitive to document format even when the underlying information is the same. For a RAG system that performs well on HTML but poorly on PDFs, we should first diagnose the document-processing pipeline rather than assuming the LLM or retriever is the problem. We should check PDF text extraction, reading order, headings, tables, and chunking, and compare retrieval performance across different formats. Using layout- and structure-aware PDF parsing, preserving document structure, and evaluating the system on diverse document formats can improve robustness. The key lesson is to treat document formatting and preprocessing as an important part of the RAG system and evaluate robustness across formats.",
+     "relevant_chunks": [
+        "not_as_sweet_by_another_name_an_empirical_study_of_c67",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c64",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c40"
+     ]
+  },
+  {
+     "question_id": "q030",
+     "question": "Based on the experimental results, what types of document preprocessing or normalization could improve the robustness of a RAG system?",
+     "answer": "Document preprocessing should aim to normalize different document formats into a consistent, structure-preserving representation before retrieval. For a RAG system, this could include extracting text while preserving headings, reading order, tables, and section structure, removing irrelevant formatting such as headers/footers, and converting PDFs or other difficult formats into a representation that the LLM handles more reliably.",
+     "relevant_chunks": [
+        "not_as_sweet_by_another_name_an_empirical_study_of_c22",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c67",
+        "not_as_sweet_by_another_name_an_empirical_study_of_c64"
+     ]
+  },
+  {
+    "question_id": "q031",
+    "question": "Summarize the paper ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION",
+    "answer": "ADAM (Adaptive Moment Estimation) is an optimization algorithm proposed by Diederik P. Kingma and Jimmy Ba for efficiently training machine-learning models, particularly neural networks. The paper introduces Adam as a method that combines the advantages of two popular optimization approaches: AdaGrad, which adapts the learning rate for each parameter, and RMSProp, which uses a moving average of squared gradients.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c0",
+        "adam_a_method_for_stochastic_optimization_c3",
+        "adam_a_method_for_stochastic_optimization_c2",
+        "adam_a_method_for_stochastic_optimization_c4"
+    ]
+  },
+  {
+    "question_id": "q032",
+    "question": "What problem does the Adam optimizer aim to solve, and why are traditional stochastic gradient descent methods sometimes insufficient?",
+    "answer": "The Adam optimizer aims to improve the efficiency and performance of training deep learning models by adapting learning rates for each parameter based on estimates of first and second moments of the gradients. Traditional stochastic gradient descent methods can be insufficient because they maintain a single learning rate for all weight updates, which may not effectively handle complex, non-stationary objectives or noisy gradients. Adam provides adaptive learning rates, making it more suitable for these challenges.",
+    "relevant_chunks": [
+      "adam_a_method_for_stochastic_optimization_c2",
+      "adam_a_method_for_stochastic_optimization_c0",
+      "adam_a_method_for_stochastic_optimization_c16"
+    ]
+  },
+  {
+    "question_id": "q033",
+    "question": "What are the main ideas behind the Adam optimization algorithm?",
+    "answer": "The main ideas behind the Adam optimization algorithm include adaptive learning rates for each parameter, which helps speed up learning, and the use of momentum to navigate complex surfaces effectively. Adam combines features from two other optimization techniques, RMSprop and stochastic gradient descent, to improve convergence and performance in training neural networks.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c2",
+        "adam_a_method_for_stochastic_optimization_c3",
+        "adam_a_method_for_stochastic_optimization_c4"
+    ]
+  },
+  {
+    "question_id": "q034",
+    "question": "How does Adam use the first and second moments of gradients to adapt the learning rate for each parameter?",
+    "answer": "Adam optimizer computes adaptive learning rates by maintaining exponentially decaying averages of both past gradients (the first moment) and past squared gradients (the second moment). This allows it to adjust the learning rate for each parameter based on the behavior of the gradients over time.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c3",
+        "adam_a_method_for_stochastic_optimization_c5",
+        "adam_a_method_for_stochastic_optimization_c7",
+        "adam_a_method_for_stochastic_optimization_c2"
+    ]
+  },
+  {
+    "question_id": "q035",
+    "question": "What is the purpose of the bias-correction terms in Adam, and why are they important during the early stages of training?",
+    "answer": "The bias-correction terms in Adam are designed to adjust the estimates of the first and second moments of the gradients, which helps to counteract the initialization bias that occurs during the early stages of training. They are important because they ensure that the moving averages of the gradients are more accurate, particularly when the number of training steps is small, leading to better convergence and performance of the model.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c13",
+        "adam_a_method_for_stochastic_optimization_c22",
+        "adam_a_method_for_stochastic_optimization_c21",
+        "adam_a_method_for_stochastic_optimization_c7",
+        "adam_a_method_for_stochastic_optimization_c4"
+    ]
+  },
+  {
+    "question_id": "q036",
+    "question": "How does Adam combine advantages of AdaGrad and RMSProp?",
+    "answer": "Adam combines the advantages of AdaGrad and RMSProp by using adaptive learning rates for each parameter, similar to RMSProp, while also incorporating momentum to smooth out updates, like AdaGrad. This allows Adam to effectively handle sparse gradients and noisy problems, making it suitable for a wide range of applications in deep learning",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c25",
+        "adam_a_method_for_stochastic_optimization_c2",
+        "adam_a_method_for_stochastic_optimization_c4",
+        "adam_a_method_for_stochastic_optimization_c3",
+        "adam_a_method_for_stochastic_optimization_c13"
+    ]
+  },
+  {
+    "question_id": "q037",
+    "question": "What are the main advantages of Adam compared with other stochastic optimization methods?",
+    "answer": "Adam is known for its efficiency in optimizing high-dimensional parameter spaces and has low memory requirements. It also adapts the learning rate based on the first and second moments of the gradients, which helps in faster convergence compared to other methods like standard gradient descent.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c2",
+        "adam_a_method_for_stochastic_optimization_c0",
+        "adam_a_method_for_stochastic_optimization_c25"
+    ]
+  },
+  {
+     "question_id": "q038",
+     "question": "What theoretical convergence guarantees does the paper provide for Adam?",
+     "answer": "The paper provides a novel framework that establishes Adam's convergence under relaxed assumptions, demonstrating both asymptotic convergence in the almost sure sense and L1 sense, similar to those used for Stochastic Gradient Descent (SGD). This framework unifies various aspects of convergence analysis, including non-asymptotic sample complexity and asymptotic convergence properties.",
+     "relevant_chunks": [
+            "adam_a_method_for_stochastic_optimization_c10",
+            "adam_a_method_for_stochastic_optimization_c11",
+            "adam_a_method_for_stochastic_optimization_c9",
+            "adam_a_method_for_stochastic_optimization_c16"
+     ]
+  },
+  {
+    "question_id": "q039",
+    "question": "How does Adam perform compared with SGD, AdaGrad, RMSProp, and other optimizers in the experiments?",
+    "answer": "Adam generally shows better training performance but may not achieve higher validation accuracy compared to SGD. Research indicates that SGD often provides better generalization than adaptive optimizers like Adam, RMSProp, and AdaGrad, especially in mature problem domains.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c19",
+        "adam_a_method_for_stochastic_optimization_c14",
+        "adam_a_method_for_stochastic_optimization_c20",
+        "adam_a_method_for_stochastic_optimization_c22",
+        "adam_a_method_for_stochastic_optimization_c17"
+    ]
+  },
+  {
+    "question_id": "q040",
+    "question": "What is AdaMax, and how does it extend or differ from the standard Adam algorithm?",
+    "answer": "AdaMax is a variant of the Adam optimization algorithm that modifies the adaptive learning rate mechanism by using the infinity norm of past gradients instead of the second-moment estimate. This adjustment enhances stability and performance, particularly in scenarios with sparse gradients or large parameter variations.",
+    "relevant_chunks": [
+        "adam_a_method_for_stochastic_optimization_c23",
+        "adam_a_method_for_stochastic_optimization_c22",
+        "adam_a_method_for_stochastic_optimization_c24",
+        "adam_a_method_for_stochastic_optimization_c3"
+    ]
+  },
+  {
+    "question_id": "q041",
+    "question": "summarize the paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL",
+    "answer": "The paper Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval proposes a new method called Approximate Nearest Neighbor Negative Contrastive Learning (ANCE), which improves the selection of hard negative samples for training dense text retrieval models. This approach enhances model training speed and maintains accuracy by using globally selected hard negatives instead of the commonly used local negatives.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c0",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c4",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c11",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c24",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c21"
+    ] 
+  },
+  {
+    "question_id": "q042",
+    "question": "What is the main problem with negative sampling in dense text retrieval that the paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL identifies?",
+    "answer": "The main problem identified is that the negative instances used in training are not representative of the irrelevant documents in testing, which leads to ineffective training and poor performance in dense retrieval.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c0",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c2"
+    ]
+  },
+  {
+    "question_id": "q043",
+    "question": "Why are local in-batch negatives often ineffective for training dense retrieval models for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "Local in-batch negatives are often ineffective for training dense retrieval models because they yield diminishing gradient norms and large gradient variances, which slow down convergence. This limitation arises because these negatives do not adequately represent the broader set of irrelevant documents needed for effective training.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c21"
+    ]
+  },
+  {
+    "question_id": "q044",
+    "question": "What is Approximate Nearest Neighbor Negative Contrastive Learning (ANCE), and how does it work for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "Approximate Nearest Neighbor Negative Contrastive Learning (ANCE) is a method designed to improve dense text retrieval by selecting more effective negative training samples. It works by sampling hard negatives globally from the entire corpus rather than just local negatives, which enhances the training process and leads to faster convergence and accurate text retrieval.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c5"
+    ]
+  },
+  {
+    "question_id": "q045",
+    "question": "How does ANCE select hard negative documents from the entire corpus for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "ANCE selects hard negative documents by using a training mechanism that samples negative instances which are more representative of the irrelevant documents encountered during testing. This approach helps improve the effectiveness of dense retrieval by addressing the bottleneck caused by uninformative negatives in training.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c11",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c4",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c2"
+    ]
+  },
+  {
+    "question_id": "q046",
+    "question": "Why does ANCE use an asynchronously updated Approximate Nearest Neighbor (ANN) index for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "ANCE uses an asynchronously updated ANN index to sample hard negatives from the entire corpus, which helps improve the training process by ensuring that the model encounters the most challenging examples. This approach addresses the limitations of local negatives and enhances the model's convergence and performance in dense text retrieval.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c9",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c11",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c4",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c15"
+    ]
+  },
+  {
+    "question_id": "q047",
+    "question": "How does the choice of negative samples affect gradient norms, stochastic gradient variance, and training convergence for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "The choice of negative samples significantly impacts gradient norms and stochastic gradient variance, as uninformative negatives can lead to near-zero gradient norms, resulting in slow convergence during training. The paper highlights that using hard negatives sampled from the full corpus improves training efficiency by providing more informative gradients, thus enhancing convergence rates.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c21",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c11",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c8"
+    ]
+  },
+  {
+    "question_id": "q048",
+    "question": "How does ANCE compare with BM25-based negative sampling and in-batch negative sampling for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "ANCE outperforms BM25-based negative sampling and in-batch negative sampling by effectively selecting harder training negatives, which leads to faster convergence and equally accurate text retrieval compared to these traditional methods. This improvement is due to its use of a global sampling mechanism from the entire corpus rather than relying on local negatives.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c10",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c20",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c21"
+    ]
+  },
+  {
+    "question_id": "q049",
+    "question": "What experimental evidence does the paper provide to demonstrate the effectiveness of ANCE in web search, OpenQA, and commercial search for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "The paper demonstrates the effectiveness of ANCE through experimental results on datasets like TREC 2019 DL, MS MARCO, NQ, and TQA, showing that it achieves faster convergence and equally accurate text retrieval compared to several baseline methods. This indicates that ANCE effectively improves the training of dense retrieval models in various search applications.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c17",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c0",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c18",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c21"
+    ]
+  },
+  {
+    "question_id": "q050",
+    "question": "Why can ANCE achieve retrieval accuracy close to BERT-based cascade retrieval while being substantially more computationally efficient for paper APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL?",
+    "answer": "ANCE achieves retrieval accuracy close to BERT-based cascade retrieval by effectively sampling hard negatives from the entire corpus, which enhances training efficiency and convergence. This method allows ANCE to maintain a balance between accuracy and computational efficiency, making it a strong alternative to more resource-intensive models.",
+    "relevant_chunks": [
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c18",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c17",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c11",
+        "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c3"
+    ]
+  },
+  {
+    "question_id": "q051",
+    "question": "Summarize the paper BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models",
+    "answer": "The paper introduces BEIR, a robust and heterogeneous benchmark designed for the zero-shot evaluation of information retrieval (IR) models. It addresses the limitations of existing models by providing a diverse set of 18 publicly available datasets, enabling researchers to evaluate the effectiveness and generalization capabilities of their models across various tasks.",
+    "relevant_chunks": [
+        "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c0",
+        "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c4",
+        "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c5",
+        "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c33"
+    ]
+  },
+  {
+     "question_id": "q052",
+     "question": "What is BEIR, and why is it useful for evaluating the retrieval component of RAG systems for the paper BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models?",
+     "answer": "BEIR (Benchmarking IR) is a heterogeneous evaluation benchmark designed to assess the zero-shot generalization capabilities of information retrieval models across diverse tasks and datasets. It is useful for evaluating the retrieval component of RAG (Retrieval-Augmented Generation) systems because it provides a comprehensive framework that includes 18 publicly available datasets spanning 9 distinct retrieval tasks, allowing researchers to understand how well their models perform in unseen domains.",
+     "relevant_chunks": [
+          "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c0",
+          "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c6",
+          "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c10",
+          "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c33"
+     ]
+  },
+  {
+    "question_id": "q053",
+    "question": "How does BEIR measure the ability of an information retrieval model to generalize to unseen datasets?",
+    "answer": "BEIR measures the ability of an information retrieval model to generalize to unseen datasets by using a collection of diverse datasets that represent different information retrieval scenarios, allowing models to be evaluated on tasks they weren't explicitly trained on. Performance is assessed using metrics like nDCG, recall@k, and MAP, which provide insights into how well the model performs across various tasks.",
+    "relevant_chunks": [
+        ""
+    ]
   }
 ]

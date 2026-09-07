@@ -3,13 +3,12 @@
 from retrieval.rag import ask
 from retrieval.retriever import debug_retrieval, print_chunks_for_annotation
 
-from evaluations.metrics import recall_at_k
 
 SESSION_ID = "cli-session"
 
-# print_chunks_for_annotation(
-#     "Tell me about the model architecture of the Transformer."
-# )
+print_chunks_for_annotation(
+    "How does BEIR measure the ability of an information retrieval model to generalize to unseen datasets?"
+)
 
 # question = input("\n>>>>>>>>>>>> ")
 
@@ -20,6 +19,9 @@ SESSION_ID = "cli-session"
 # def modelInput(question):
 
     # for event in ask(question, session_id=SESSION_ID):
+
+        # if (question==''||question==None||question==None):
+            # return
 
     #     if event["type"] == "answer":
     #         print(event["content"], end="", flush=True)
@@ -49,53 +51,53 @@ SESSION_ID = "cli-session"
 
 # OLD CODE
 
-while True:
+# while True:
 
-    question = input("\n>>>>>>>>>>>> ")
+#     question = input("\n>>>>>>>>>>>> ")
 
-    if question.lower()== "exit":
-        break
+#     if question.lower()== "exit":
+#         break
 
-    debug_retrieval(question)
+#     debug_retrieval(question)
 
-    # result = ask(question)
-    # print(result)
+#     # result = ask(question)
+#     # print(result)
 
-    print('\nAnswer: ')
+#     print('\nAnswer: ')
 
-    sources = []
+#     sources = []
 
-    for event in ask(question,session_id=SESSION_ID):
+#     for event in ask(question,session_id=SESSION_ID):
 
-        # streaming answer
+#         # streaming answer
 
-        if event['type'] == 'answer':
+#         if event['type'] == 'answer':
 
-            print(
-                event['content'],
-                end='',
-                flush=True
-            )
+#             print(
+#                 event['content'],
+#                 end='',
+#                 flush=True
+#             )
 
-        # sources arrive after answer
+#         # sources arrive after answer
 
-        elif event['type'] == 'sources':
+#         elif event['type'] == 'sources':
 
-            sources = event['content']
+#             sources = event['content']
 
-    print('\n')
+#     print('\n')
 
-    if sources:
+#     if sources:
 
-        for source in sources:
+#         for source in sources:
 
-            print(
-                f"[{source['citation_id']}] "
-                f"{source['filename']} "
-                f"Page {source['page']}"
-            )
+#             print(
+#                 f"[{source['citation_id']}] "
+#                 f"{source['filename']} "
+#                 f"Page {source['page']}"
+#             )
 
-    print()
+#     print()
 
 # #     # older code
 # #     # citations = {}
