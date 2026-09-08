@@ -7,7 +7,7 @@ from retrieval.retriever import debug_retrieval, print_chunks_for_annotation
 SESSION_ID = "cli-session"
 
 print_chunks_for_annotation(
-    "How does BEIR measure the ability of an information retrieval model to generalize to unseen datasets?"
+    "Summarize the paper BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
 )
 
 # question = input("\n>>>>>>>>>>>> ")
