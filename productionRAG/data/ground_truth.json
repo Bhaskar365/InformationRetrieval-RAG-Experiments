@@ -628,11 +628,383 @@
     "question": "Summarize the paper BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
     "answer": "BERT, which stands for Bidirectional Encoder Representations from Transformers, is a language model developed by Google that pre-trains deep bidirectional representations from unlabeled text. It uses a unique approach of masked language modeling and next sentence prediction, allowing it to achieve state-of-the-art results in various natural language processing tasks.",
     "relevant_chunks": [
-        "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c0",
-        "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c2",
-        "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c3",
-        "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c15",
-        "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c30"
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c0",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c2",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c3",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c15",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c30"
+    ]
+  },
+  {
+    "question_id": "q062",
+    "question": "What evaluation metrics were used to measure BERT's performance on the GLUE benchmark, and why are these metrics appropriate for language understanding tasks?",
+    "answer": "BERT's performance on the GLUE benchmark is typically measured using metrics such as accuracy, F1 score, and GLUE score, which aggregate performance across multiple tasks. These metrics are appropriate for language understanding tasks because they provide a comprehensive assessment of a model's ability to perform various natural language processing tasks, ensuring that the model is evaluated on its general language understanding capabilities rather than just on a single task.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c18",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c16",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c29"
+    ]
+  },
+  {
+    "question_id": "q063",
+    "question": "How did BERT's performance compare with previous state-of-the-art models on the GLUE benchmark? Analyze the improvement using the reported evaluation scores.",
+    "answer": "BERT-large achieved an average GLUE score of 80.5, outperforming previous state-of-the-art models by a significant margin when it was introduced. Human annotators later achieved an average score of 87.1 on the same benchmark.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c18"
+    ]
+  },
+  {
+    "question_id": "q064",
+    "question": "Which evaluation metrics were used for the SQuAD 1.1 and SQuAD 2.0 question-answering tasks? Explain the difference between Exact Match (EM) and F1 score.",
+    "answer": "The SQuAD 1.1 and SQuAD 2.0 tasks both used Exact Match (EM) and token-level F1 score as their core evaluation metrics. Exact Match (EM) measures whether the predicted answer exactly matches one of the reference answers, while the F1 score calculates the overlap between the predicted tokens and the reference tokens, accounting for partial correctness.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c21"
+    ]
+  },
+  {
+    "question_id": "q065",
+    "question": "How did BERT-Base and BERT-Large compare in terms of Exact Match and F1 scores on SQuAD? What do these results indicate about model size and performance?",
+    "answer": "BERT-Base achieved an Exact Match score of 78.5 and an F1 score of 83.0, while BERT-Large reached an Exact Match score of 84.1 and an F1 score of 90.9 on the SQuAD dataset. These results indicate that larger models tend to perform better, suggesting that model size can significantly impact performance on tasks like question answering.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c21",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c26"
+    ]
+  },
+  {
+    "question_id": "q066",
+    "question": "What metrics were used to evaluate BERT on the MultiNLI task, and what do the matched and mismatched accuracy scores reveal about BERT's generalization ability?",
+    "answer": "BERT was evaluated on the MultiNLI task using accuracy scores for matched and mismatched datasets. The matched accuracy indicates how well BERT performs on data similar to its training set, while the mismatched accuracy reflects its ability to generalize to different contexts; a significant difference between these scores suggests limitations in BERT's generalization ability.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c18",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c29"
+    ]
+  },
+  {
+    "question_id": "q067",
+    "question": "How was BERT evaluated on the SWAG benchmark? Explain the significance of the accuracy metric and analyze BERT’s results compared with previous approaches.",
+    "answer": "BERT was evaluated on the SWAG benchmark by measuring its accuracy in predicting the most plausible continuation of a given sentence, achieving an accuracy of 86.5%, which significantly outperformed previous models. This high accuracy demonstrates BERT's ability to understand context and semantics better than earlier approaches, marking a substantial advancement in natural language understanding.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c22",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c18"
+    ]
+  },
+  {
+    "question_id": "q068",
+    "question": "Why did the authors use task-specific evaluation metrics rather than a single metric for all NLP tasks? Discuss using examples from GLUE, SQuAD, MultiNLI, and SWAG for the paper BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+    "answer": "Task-specific evaluation metrics are used because different NLP tasks have unique requirements and objectives that a single metric cannot adequately capture. For example, GLUE focuses on a variety of language understanding tasks, SQuAD evaluates reading comprehension, MultiNLI assesses natural language inference, and SWAG measures commonsense reasoning, each necessitating tailored metrics to accurately reflect performance in their specific contexts.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c16",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c0"
+    ]
+  },
+  {
+    "question_id": "q069",
+    "question": "How can the evaluation results in the BERT paper be used to determine whether bidirectional pre-training actually improves downstream NLP performance?",
+    "answer": "The evaluation results in the BERT paper demonstrate that BERT achieved state-of-the-art results on eleven natural language processing tasks, indicating that bidirectional pre-training significantly enhances performance compared to previous unidirectional models. By comparing these results with those from earlier models, one can assess the effectiveness of bidirectional pre-training in improving downstream NLP tasks.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c24",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c46",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c50"
+    ]
+  },
+  {
+    "question_id": "q070",
+    "question": "Based on the evaluation metrics reported in the paper, which downstream task demonstrates the strongest evidence for BERT’s effectiveness? Justify your answer using the reported scores and comparisons with previous models.",
+    "answer": "The downstream task that demonstrates the strongest evidence for BERT's effectiveness is the Natural Language Inference (NLI) task. BERT achieved significantly higher scores compared to previous models, indicating its superior performance in understanding and reasoning about language.",
+    "relevant_chunks": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c18"
+    ]
+  },
+  {
+    "question_id": "q071",
+    "question": "Summarize the paper BLEU: a Method for Automatic Evaluation of Machine Translation",
+    "answer": "The paper BLEU: a Method for Automatic Evaluation of Machine Translation introduces BLEU (Bilingual Evaluation Understudy), a metric designed to automatically evaluate the quality of machine-translated text by comparing it to one or more reference translations. It emphasizes the importance of precision in matching n-grams and incorporates a brevity penalty to address issues with short translations.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c0",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c1",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c22"
+    ]
+  },
+  {
+    "question_id": "q072",
+    "question": "What problem does BLEU aim to solve in the evaluation of machine translation, and why are traditional human evaluations insufficient?",
+    "answer": "BLEU aims to provide a quick, automated way to evaluate the quality of machine translation by measuring the similarity between machine-generated text and human reference translations. Traditional human evaluations are often insufficient because they are time-consuming, expensive, and cannot be easily reused for ongoing assessments, making them impractical for rapid development and evaluation cycles.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c0",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c1",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c2"
+    ]
+  },
+  {
+    "question_id": "q073",
+    "question": "What is the central idea behind BLEU for measuring the quality of a machine-generated translation?",
+    "answer": "The central idea behind BLEU is that the closer a machine's translation output is to a professional human translation, the better the quality of the machine translation. BLEU measures this by comparing the machine-generated text to one or more high-quality human reference translations using n-gram overlap.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c1",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c3"
+    ]
+  },
+  {
+    "question_id": "q074",
+    "question": "How does BLEU use n-gram precision to compare a machine translation with one or more human reference translations?",
+    "answer": "BLEU uses n-gram precision by comparing sequences of words (n-grams) in the machine-generated translation to those in one or more human reference translations. It calculates the proportion of n-grams that match between the candidate and reference texts, providing a score that indicates the quality of the translation based on this overlap.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c6",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c5",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c7"
+    ]
+  },
+  {
+    "question_id": "q075",
+    "question": "Why does BLEU use multiple reference translations, and how does this improve the evaluation of translation quality?",
+    "answer": "BLEU uses multiple reference translations to account for the fact that there are often many correct ways to translate a sentence, and comparing against a single reference could unfairly penalize valid alternatives. By including several high-quality references, the metric better captures acceptable variations in phrasing and meaning, leading to a more accurate assessment of translation quality.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c3",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c1",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c7",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c12"
+    ]
+  },
+  {
+    "question_id": "q076",
+    "question": "What is the purpose of BLEU's modified n-gram precision, and how does it prevent excessive credit for repeated words or phrases?",
+    "answer": "BLEU's modified n-gram precision evaluates the accuracy of machine-generated translations by comparing them to reference translations, ensuring that only unique occurrences of n-grams are counted. It prevents excessive credit for repeated words or phrases by clipping the count of each n-gram in the candidate translation to its maximum occurrence in the reference translations, which avoids inflating the precision score.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c6",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c11",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c7"
+    ]
+  },
+  {
+    "question_id": "q077",
+    "question": "What is the brevity penalty in BLEU, and why is it necessary when evaluating machine translations?",
+    "answer": "The brevity penalty in BLEU is a mechanism that penalizes candidate translations that are shorter than the reference translations. It is necessary to prevent very short outputs from achieving artificially high scores, ensuring that the evaluation reflects the quality of the translation more accurately.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c13",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c14",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c15"
+    ]
+  },
+  {
+    "question_id": "q078",
+    "question": "How does BLEU combine different n-gram precisions into a single score, and why does it use a geometric mean?",
+    "answer": "BLEU combines different n-gram precisions using a weighted geometric mean, which helps to balance the contributions of various n-gram lengths while preventing any single length from dominating the score. This method ensures that the overall score reflects a more comprehensive evaluation of the generated text's quality.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c6",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c11",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c15"
+    ]
+  },
+  {
+    "question_id": "q079",
+    "question": "How well does BLEU correlate with human judgments of translation quality according to the experiments in the paper BLEU: a Method for Automatic Evaluation of Machine Translation?",
+    "answer": "BLEU was believed to reasonably correlate with human judgment, but recent studies suggest that its correlation is much lower than previously claimed, especially when outliers are removed from the analysis. This indicates that while BLEU is simple and easy to compute, it may not be a reliable measure of translation quality compared to other metrics.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c19",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c21",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c7"
+    ]
+  },
+  {
+    "question_id": "q080",
+    "question": "What are the main strengths and limitations of BLEU as an automatic machine translation evaluation metric?",
+    "answer": "BLEU's main strengths include its ability to provide a quick, automated evaluation of machine translation quality by measuring n-gram overlap with reference texts, making it efficient for large-scale assessments. However, its limitations are that it primarily captures lexical precision rather than semantic meaning, and it may not be suitable for tasks with multiple valid outputs, as it can misrepresent quality in those contexts.",
+    "relevant_chunks": [
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c0",
+      "bleu-a-method-for-automatic-evaluation-of-machine-translation_c15"
+    ]
+  },
+  {
+    "question_id": "q081",
+    "question": "Summarize the paper BLEURT: Learning Robust Metrics for Text Generation",
+    "answer": "The paper BLEURT proposes a new evaluation metric for text generation that aims to better align with human judgments compared to existing metrics like BLEU and ROUGE. It utilizes a learned approach based on BERT and incorporates a novel pre-training scheme using millions of synthetic examples to enhance its performance.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c0",
+      "bleurt_learning_robust_metrics_for_text_generation_c1"
+    ]
+  },
+  {
+    "question_id": "q082",
+    "question": "What problem does BLEURT aim to solve, and why do traditional metrics such as BLEU and ROUGE have limitations for evaluating text generation?",
+    "answer": "BLEURT aims to improve the evaluation of text generation by better modeling human judgments, addressing the shortcomings of traditional metrics like BLEU and ROUGE, which primarily measure n-gram overlap and often fail to capture semantic meaning or recognize paraphrases. These traditional metrics can misjudge the quality of outputs that are semantically correct but differ significantly in wording from reference texts",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c1",
+      "bleurt_learning_robust_metrics_for_text_generation_c0"
+    ]
+  },
+  {
+    "question_id": "q083",
+    "question": "What is BLEURT, and how does it use BERT to evaluate the quality of generated text?",
+    "answer": "BLEURT (Bilingual Evaluation Understudy with Representations from Transformers) is a machine learning metric that evaluates the quality of generated text by comparing it to reference outputs. It uses pre-trained language models like BERT to assess semantic similarity and fluency, allowing for a more nuanced evaluation than traditional metrics.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c0",
+      "bleurt_learning_robust_metrics_for_text_generation_c13"
+    ]
+  },
+  {
+    "question_id": "q084",
+    "question": "Why does BLEURT use a pre-training stage with synthetic examples before fine-tuning on human judgments?",
+    "answer": "BLEURT uses a pre-training stage with synthetic examples to enhance its understanding of language and context, allowing it to better generalize before being fine-tuned on human judgments. This approach helps improve the model's performance on tasks that require nuanced language understanding.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c0",
+      "bleurt_learning_robust_metrics_for_text_generation_c25",
+      "bleurt_learning_robust_metrics_for_text_generation_c24"
+    ]
+  },
+  {
+    "question_id": "q085",
+    "question": "What types of synthetic transformations are used to generate training examples during BLEURT’s pre-training?",
+    "answer": "BLEURT's pre-training utilizes synthetic transformations such as web rephrasing and synthetic textbooks to generate training examples. These methods help create diverse and high-quality data for training large language models.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c37"
+    ]
+  },
+  {
+    "question_id": "q086",
+    "question": "How is BLEURT fine-tuned using human-generated evaluation data, and what role do human judgments play in the training process?",
+    "answer": "BLEURT is fine-tuned using human-generated evaluation data by training on datasets where human judgments assess the quality of generated text. This process allows BLEURT to align its scoring with human preferences, improving its ability to evaluate text based on semantic similarity and fluency rather than just surface-level matches.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c13",
+      "bleurt_learning_robust_metrics_for_text_generation_c17",
+      "bleurt_learning_robust_metrics_for_text_generation_c0"
+    ]
+  },
+  {
+    "question_id": "q087",
+    "question": "How does BLEURT perform compared with existing evaluation metrics on the WMT Metrics shared task datasets?",
+    "answer": "BLEURT outperforms existing evaluation metrics on the WMT Metrics shared task datasets by providing more accurate assessments of machine-generated text quality. It combines both reference-based and reference-free evaluation methods, enhancing its effectiveness in various tasks.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c19",
+      "bleurt_learning_robust_metrics_for_text_generation_c17",
+      "bleurt_learning_robust_metrics_for_text_generation_c16"
+    ]
+  },
+  {
+    "question_id": "q088",
+    "question": "Why is robustness to limited and out-of-distribution training data important for an automatic text-generation metric, and how does BLEURT address this challenge?",
+    "answer": "Robustness to limited and out-of-distribution training data is crucial for an automatic text-generation metric because it ensures that the metric can accurately evaluate diverse and potentially unseen text generation scenarios. BLEURT addresses this challenge by utilizing a novel pre-training scheme that incorporates millions of synthetic examples, allowing it to generalize better and model human judgments effectively.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c3",
+      "bleurt_learning_robust_metrics_for_text_generation_c4",
+      "bleurt_learning_robust_metrics_for_text_generation_c0"
+    ]
+  },
+  {
+    "question_id": "q089",
+    "question": "What evidence does the paper BLEURT: Learning Robust Metrics for Text Generation provide that BLEURT generalizes across different text-generation tasks or datasets?",
+    "answer": "The paper presents evidence that BLEURT generalizes across different text-generation tasks by using a novel pre-training scheme that incorporates millions of synthetic examples, which helps the model to better align with human judgments despite being trained on a limited number of possibly biased examples.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c3",
+      "bleurt_learning_robust_metrics_for_text_generation_c4",
+      "bleurt_learning_robust_metrics_for_text_generation_c0"
+    ]
+  },
+  {
+    "question_id": "q090",
+    "question": "What are the main contributions and conclusions of the paper BLEURT: Learning Robust Metrics for Text Generation, and what limitations or directions for future work does the paper identify?",
+    "answer": "The BLEURT paper primarily contributes a new metric for evaluating text generation quality, which leverages pre-trained language models to assess the semantic similarity between generated and reference texts. The paper concludes that BLEURT outperforms existing metrics in various benchmarks, but it also identifies limitations such as its reliance on large pre-trained models and suggests future work could focus on improving efficiency and exploring its application in different languages and domains.",
+    "relevant_chunks": [
+      "bleurt_learning_robust_metrics_for_text_generation_c0",
+      "bleurt_learning_robust_metrics_for_text_generation_c13",
+      "bleurt_learning_robust_metrics_for_text_generation_c23"
+    ]
+  },
+  {
+    "question_id": "q091",
+    "question": "Summarize the paper CIDEr: Consensus-based Image Description Evaluation",
+    "answer": "The paper CIDEr: Consensus-based Image Description Evaluation introduces a metric for evaluating the quality of automatically generated image captions by measuring their similarity to multiple human reference captions. CIDEr uses TF-IDF weighted n-gram similarity to assess how well a candidate caption captures the consensus of these references, making it a reliable tool for image captioning evaluation.",
+    "relevant_chunks": [
+      "cider_consensus_based_image_description_evaluation_c0",
+      "cider_consensus_based_image_description_evaluation_c1",
+      "cider_consensus_based_image_description_evaluation_c13",
+      "cider_consensus_based_image_description_evaluation_c15",
+      "cider_consensus_based_image_description_evaluation_c33"
+    ]
+  },
+  {
+    "question_id": "q092",
+    "question": "What problem in automatic image-caption evaluation does CIDEr aim to address, and why are existing metrics such as BLEU, ROUGE, and METEOR insufficient?",
+    "answer": "CIDEr aims to address the limitations of existing metrics like BLEU, ROUGE, and METEOR by focusing on the semantic similarity and content of generated captions compared to reference captions. While BLEU and others primarily measure n-gram overlap, they may not adequately capture the meaning and context of the captions, which is crucial for effective evaluation in image captioning.",
+    "relevant_chunks": [
+      "cider_consensus_based_image_description_evaluation_c18"
+    ]
+  },
+  {
+    "question_id": "q093",
+    "question": "What is the central idea behind the paper CIDEr: Consensus-based Image Description Evaluation's consensus-based evaluation paradigm? Why does the authors' definition of “human-like” differ from simply asking humans which caption they prefer?",
+    "answer": "The central idea behind the CIDEr paper's consensus-based evaluation paradigm is to measure how well a generated image description matches the typical ways humans describe the same image, focusing on human consensus rather than subjective preferences. The authors argue that 'human-like' descriptions are not necessarily the same as what humans prefer, as preferences can vary widely, while consensus reflects a more objective standard based on a majority of human judgments.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c2",
+        "cider_consensus_based_image_description_evaluation_c1",
+        "cider_consensus_based_image_description_evaluation_c11"
+    ]
+  },
+  {
+    "question_id": "q094",
+    "question": "How does the human triplet annotation methodology work, and how does it provide a ground-truth measure of consensus?",
+    "answer": "The human triplet annotation methodology involves multiple annotators evaluating the same set of items, where each item is assessed by three different annotators. This approach helps establish a ground-truth measure of consensus by comparing the annotations to determine agreement levels, thus providing a more reliable and validated reference for training and evaluating models",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c8",
+        "cider_consensus_based_image_description_evaluation_c11",
+        "cider_consensus_based_image_description_evaluation_c43"
+    ]
+  },
+  {
+    "question_id": "q095",
+    "question": "Explain how the CIDEr metric works. Why does it use TF-IDF weighting over 1- to 4-grams rather than treating all words or n-grams equally?",
+    "answer": "CIDEr (Consensus-based Image Description Evaluation) uses TF-IDF weighting to assess the quality of generated captions by emphasizing the importance of specific words and phrases in relation to a set of reference captions. This approach helps to prioritize unique and informative terms, ensuring that the evaluation reflects the relevance of the content rather than treating all words or n-grams equally.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c13",
+        "cider_consensus_based_image_description_evaluation_c14",
+        "cider_consensus_based_image_description_evaluation_c51"
+    ]
+  },
+  {
+    "question_id": "q096",
+    "question": "Why do the authors introduce the PASCAL-50S and ABSTRACT-50S datasets with 50 reference descriptions per image? What limitation of existing datasets are they trying to overcome?",
+    "answer": "The authors introduce the PASCAL-50S and ABSTRACT-50S datasets to provide 50 human-written descriptions per image, significantly more than existing datasets, which typically have only five descriptions. This aims to overcome the limitation of having insufficient and potentially less diverse image descriptions in current datasets, enhancing the quality and richness of image captioning research.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c5",
+        "cider_consensus_based_image_description_evaluation_c10",
+        "cider_consensus_based_image_description_evaluation_c15"
+    ]
+  },
+  {
+    "question_id": "q097",
+    "question": "What evidence do the experiments provide that increasing the number of reference sentences improves the reliability of automatic image-description evaluation?",
+    "answer": "The experiments indicate that increasing the number of reference sentences enhances the reliability of automatic image-description evaluation by providing a broader context for comparison, which helps in capturing diverse interpretations and improving scoring consistency. This approach reduces variability in evaluations, leading to more accurate assessments of image descriptions.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c23"
+    ]
+  },
+  {
+    "question_id": "q098",
+    "question": "How does CIDEr compare with existing metrics such as BLEU, ROUGE, and METEOR in predicting human consensus? What do the results suggest about the strengths of CIDEr?",
+    "answer": "CIDEr outperforms existing metrics like BLEU, ROUGE, and METEOR in predicting human consensus, particularly in tasks involving image captioning. The results suggest that CIDEr's focus on n-gram precision and its ability to account for the importance of specific words make it more effective in capturing the nuances of human judgment.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c24",
+        "cider_consensus_based_image_description_evaluation_c27",
+        "cider_consensus_based_image_description_evaluation_c28"
+    ]
+  },
+  {
+    "question_id": "q099",
+    "question": "How do the authors use CIDEr to compare different automatic image-description systems? What does the evaluation reveal about the relative quality of the systems tested?",
+    "answer": "The authors use CIDEr to compare different automatic image-description systems by measuring how well the generated descriptions match a set of human-generated reference sentences, focusing on consensus. The evaluation reveals that CIDEr provides a more accurate metric for assessing the quality of descriptions, showing significant improvements in performance compared to previous metrics, thus indicating that some systems produce descriptions that align more closely with human consensus. CIDEr has shown high agreement with human judgment, making it a reliable benchmark for evaluating image description quality.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c22",
+        "cider_consensus_based_image_description_evaluation_c29",
+        "cider_consensus_based_image_description_evaluation_c28"
+    ]
+  },
+  {
+    "question_id": "q100",
+    "question": "Critically evaluate CIDEr as an image-caption evaluation metric. What are its main strengths and limitations, and what assumptions does it make about consensus, reference captions, and caption quality?",
+    "answer": "CIDEr is a widely used metric for evaluating image captions, primarily focusing on the similarity between generated captions and human-written reference captions. Its main strengths include its ability to capture consensus among human annotators and its emphasis on both word choice and meaning, which aligns well with human judgment. However, its limitations involve a potential bias towards longer captions with more word overlap, and it may not adequately account for semantic nuances or variations in phrasing. CIDEr assumes that good captions should reflect common content and structure found in reference captions, which may overlook the quality of concise but accurate descriptions.",
+    "relevant_chunks": [
+        "cider_consensus_based_image_description_evaluation_c10",
+        "cider_consensus_based_image_description_evaluation_c15",
+        "cider_consensus_based_image_description_evaluation_c6"
     ]
   }
 ]

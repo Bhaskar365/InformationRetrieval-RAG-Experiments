@@ -7,7 +7,7 @@ from retrieval.retriever import debug_retrieval, print_chunks_for_annotation
 SESSION_ID = "cli-session"
 
 print_chunks_for_annotation(
-    "Summarize the paper BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
+    "Critically evaluate CIDEr as an image-caption evaluation metric. What are its main strengths and limitations, and what assumptions does it make about consensus, reference captions, and caption quality?"
 )
 
 # question = input("\n>>>>>>>>>>>> ")
