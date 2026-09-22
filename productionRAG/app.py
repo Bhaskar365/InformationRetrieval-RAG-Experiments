@@ -7,7 +7,7 @@ from retrieval.retriever import debug_retrieval, print_chunks_for_annotation
 SESSION_ID = "cli-session"
 
 print_chunks_for_annotation(
-    "Critically evaluate CIDEr as an image-caption evaluation metric. What are its main strengths and limitations, and what assumptions does it make about consensus, reference captions, and caption quality?"
+    "What is representation learning, and how do deep-learning models learn increasingly abstract representations across multiple layers?"
 )
 
 # question = input("\n>>>>>>>>>>>> ")

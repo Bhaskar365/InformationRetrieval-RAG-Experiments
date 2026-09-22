@@ -1006,5 +1006,35 @@
         "cider_consensus_based_image_description_evaluation_c15",
         "cider_consensus_based_image_description_evaluation_c6"
     ]
+  },
+  {
+    "question_id": "q101",
+    "question": "Summarize the paper Deep learning Yann Lecun, Yoshua Bengio, Geoffrey Hinton",
+    "answer": "The paper Deep Learning by Yann LeCun, Yoshua Bengio, and Geoffrey Hinton discusses how deep learning enables computational models with multiple processing layers to learn data representations with various levels of abstraction, significantly advancing fields like speech and visual recognition, object detection, and more. It highlights the effectiveness of deep learning in discovering complex structures in large datasets using algorithms like backpropagation.",
+        "relevant_chunks" : [
+        "deep_learning_hilton_bengio_lecun_c5",
+        "deep_learning_hilton_bengio_lecun_c2",
+        "deep_learning_hilton_bengio_lecun_c13",
+        "deep_learning_hilton_bengio_lecun_c3"
+    ]
+  },
+  {
+    "question_id": "q102",
+    "question": "What is deep learning, and how does it differ from traditional machine-learning approaches to feature engineering?",
+    "answer": "Deep learning is a subset of machine learning that uses neural networks with multiple layers to automatically learn patterns from data, mimicking the way the human brain processes information. Unlike traditional machine learning, which often requires manual feature engineering to select and transform relevant variables, deep learning models can automatically identify and extract important features from raw data without explicit programming",
+    "relevant_chunks": [
+        "deep_learning_hilton_bengio_lecun_c2",
+        "deep_learning_hilton_bengio_lecun_c3",
+        "deep_learning_hilton_bengio_lecun_c1",
+        "deep_learning_hilton_bengio_lecun_c14"
+    ]
+  },
+  {
+    "question_id": "q103",
+    "question": "What is representation learning, and how do deep-learning models learn increasingly abstract representations across multiple layers?",
+    "answer": "Representation learning is a set of techniques in machine learning that enables systems to automatically discover the representations needed for feature detection or classification from raw data. Deep learning models achieve this by using multiple processing layers, where each layer learns to transform the data into increasingly abstract representations, allowing the model to capture complex patterns and structures in the data.",
+    "relevant_chunks": [
+        ""
+    ]
   }
 ]

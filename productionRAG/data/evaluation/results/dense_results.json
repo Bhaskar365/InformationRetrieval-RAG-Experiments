@@ -1,0 +1,734 @@
+[
+  {
+    "question_id": "What is the name of the dataset used for training and testing in numerous works?",
+    "retrieved": [
+      "randomforest2001_c44",
+      "randomforest2001_c44",
+      "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c72",
+      "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c72",
+      "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c7",
+      "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c7",
+      "xgboost_a_scalable_tree_boosting_system_c31",
+      "xgboost_a_scalable_tree_boosting_system_c31",
+      "support_vector_networks_c26",
+      "support_vector_networks_c26"
+    ],
+    "relevant": [
+      "cider_consensus_based_image_description_evaluation_c5"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "Q1",
+    "retrieved": [
+      "dense_passage_retrieval_for_open_domain_question_answering_c7",
+      "dense_passage_retrieval_for_open_domain_question_answering_c7",
+      "bleurt_learning_robust_metrics_for_text_generation_c12",
+      "bleurt_learning_robust_metrics_for_text_generation_c12",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c14",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c14",
+      "learning_to_rank_with_(a-lot-of)_word_features_c15",
+      "learning_to_rank_with_(a-lot-of)_word_features_c15",
+      "cider_consensus_based_image_description_evaluation_c32",
+      "cider_consensus_based_image_description_evaluation_c32"
+    ],
+    "relevant": [
+      "dense_passage_retrieval_for_open_domain_question_answering_c41"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "What is the purpose of the [CLS] token in BERT?",
+    "retrieved": [
+      "colbert_e\u0080fficient_and-eff\u0080ective_passage_search_via_contextualized_late_interaction_over_bert_c19",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c10",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c10",
+      "colbert_e\u0080fficient_and-eff\u0080ective_passage_search_via_contextualized_late_interaction_over_bert_c17",
+      "colbertv2_effective_and_efficient_retrieval_via_lightweight_late_interaction_c6",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c7",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c7",
+      "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c32",
+      "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c32",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c46"
+    ],
+    "relevant": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c2"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "What is the name of the new evaluation protocol proposed in the paper?",
+    "retrieved": [
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c2",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c2",
+      "colbertv2_effective_and_efficient_retrieval_via_lightweight_late_interaction_c71",
+      "comet_a_neural_framework_for_mt_evaluation_c25",
+      "comet_a_neural_framework_for_mt_evaluation_c25",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c71",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c71",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c71",
+      "factscore_fine_grained_atomic_evaluation_of_factual_precision_in_long_form_text_generation_c63",
+      "factscore_fine_grained_atomic_evaluation_of_factual_precision_in_long_form_text_generation_c63"
+    ],
+    "relevant": [
+      "cider_consensus_based_image_description_evaluation_c5"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "What is the name of the new metric proposed in the paper?",
+    "retrieved": [
+      "comet_a_neural_framework_for_mt_evaluation_c17",
+      "comet_a_neural_framework_for_mt_evaluation_c17",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c6",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c6",
+      "cider_consensus_based_image_description_evaluation_c32",
+      "cider_consensus_based_image_description_evaluation_c32",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c3",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c3",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c19",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c19"
+    ],
+    "relevant": [
+      "cider_consensus_based_image_description_evaluation_c5"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q3",
+    "retrieved": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c39",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c39",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c39",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c20",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c20",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c20",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c43",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c43",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c43",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c78"
+    ],
+    "relevant": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c20"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 1.0,
+    "ndcg@5": 0.8175293653079347,
+    "recall@10": 1.0,
+    "ndcg@10": 1.1737365524159569,
+    "reciprocal_rank": 0.25
+  },
+  {
+    "question_id": "Why does SBERT use a siamese network architecture?",
+    "retrieved": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c17",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c17",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c7",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c7",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c12",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c12",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c4",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c4",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c2",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c2"
+    ],
+    "relevant": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c2"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 1.0,
+    "ndcg@10": 0.5900948219818691,
+    "reciprocal_rank": 0.1111111111111111
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "randomforest2001_c58",
+      "randomforest2001_c58",
+      "randomforest2001_c27",
+      "randomforest2001_c27",
+      "support_vector_networks_c30",
+      "support_vector_networks_c30",
+      "randomforest2001_c26",
+      "randomforest2001_c26",
+      "randomforest2001_c45",
+      "randomforest2001_c45"
+    ],
+    "relevant": [
+      "randomforest2001_c59",
+      "randomforest2001_c58"
+    ],
+    "recall@1": 0.5,
+    "ndcg@1": 1.0,
+    "recall@3": 0.5,
+    "ndcg@3": 1.0,
+    "recall@5": 0.5,
+    "ndcg@5": 1.0,
+    "recall@10": 0.5,
+    "ndcg@10": 1.0,
+    "reciprocal_rank": 1.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "training_language_models_to_follow-instructions_with_human_feedback_c66",
+      "training_language_models_to_follow-instructions_with_human_feedback_c66",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c38",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c38",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c45",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c45",
+      "language_models_are_few_shot_learners_c122",
+      "language_models_are_few_shot_learners_c122",
+      "language_models_are_few_shot_learners_c140",
+      "language_models_are_few_shot_learners_c140"
+    ],
+    "relevant": [
+      "okapi_trec3_c17"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "What is the main difference between the Kendall's Tau and the DARR metrics?",
+    "retrieved": [
+      "bleurt_learning_robust_metrics_for_text_generation_c19",
+      "bleurt_learning_robust_metrics_for_text_generation_c19",
+      "comet_a_neural_framework_for_mt_evaluation_c21",
+      "comet_a_neural_framework_for_mt_evaluation_c21",
+      "comet_a_neural_framework_for_mt_evaluation_c18",
+      "comet_a_neural_framework_for_mt_evaluation_c18",
+      "comet_a_neural_framework_for_mt_evaluation_c17",
+      "comet_a_neural_framework_for_mt_evaluation_c17",
+      "comet_a_neural_framework_for_mt_evaluation_c45",
+      "comet_a_neural_framework_for_mt_evaluation_c45"
+    ],
+    "relevant": [
+      "bleurt_learning_robust_metrics_for_text_generation_c39"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c17",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c17",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c61",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c61",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c95",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c95",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c3",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c3",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c88",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c88"
+    ],
+    "relevant": [
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c17"
+    ],
+    "recall@1": 1.0,
+    "ndcg@1": 1.0,
+    "recall@3": 1.0,
+    "ndcg@3": 1.6309297535714575,
+    "recall@5": 1.0,
+    "ndcg@5": 1.6309297535714575,
+    "recall@10": 1.0,
+    "ndcg@10": 1.6309297535714575,
+    "reciprocal_rank": 1.0
+  },
+  {
+    "question_id": "Why do humans describe images with more than 5 sentences?",
+    "retrieved": [
+      "cider_consensus_based_image_description_evaluation_c17",
+      "cider_consensus_based_image_description_evaluation_c17",
+      "cider_consensus_based_image_description_evaluation_c46",
+      "cider_consensus_based_image_description_evaluation_c46",
+      "cider_consensus_based_image_description_evaluation_c5",
+      "cider_consensus_based_image_description_evaluation_c5",
+      "cider_consensus_based_image_description_evaluation_c16",
+      "cider_consensus_based_image_description_evaluation_c16",
+      "cider_consensus_based_image_description_evaluation_c18",
+      "cider_consensus_based_image_description_evaluation_c18"
+    ],
+    "relevant": [
+      "cider_consensus_based_image_description_evaluation_c5"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 1.0,
+    "ndcg@5": 0.38685280723454163,
+    "recall@10": 1.0,
+    "ndcg@10": 0.7430599943425638,
+    "reciprocal_rank": 0.2
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c81",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c81",
+      "support_vector_networks_c10",
+      "support_vector_networks_c10",
+      "okapi_trec3_c37",
+      "okapi_trec3_c37",
+      "support_vector_networks_c14",
+      "support_vector_networks_c14",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c27",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c27"
+    ],
+    "relevant": [
+      "ijirt206678_paperstracturaldamage_c22"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "What is the DARR metric used for in the WMT Shared Task?",
+    "retrieved": [
+      "comet_a_neural_framework_for_mt_evaluation_c25",
+      "comet_a_neural_framework_for_mt_evaluation_c25",
+      "bleurt_learning_robust_metrics_for_text_generation_c32",
+      "bleurt_learning_robust_metrics_for_text_generation_c32",
+      "bleurt_learning_robust_metrics_for_text_generation_c16",
+      "bleurt_learning_robust_metrics_for_text_generation_c16",
+      "comet_a_neural_framework_for_mt_evaluation_c43",
+      "comet_a_neural_framework_for_mt_evaluation_c43",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c6",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c6"
+    ],
+    "relevant": [
+      "bleurt_learning_robust_metrics_for_text_generation_c39"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "What is the purpose of the 25 points filter in the DARR metric?",
+    "retrieved": [
+      "comet_a_neural_framework_for_mt_evaluation_c17",
+      "comet_a_neural_framework_for_mt_evaluation_c17",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c49",
+      "the_probabilistic_relevance_framework_bm25_and_beyond_c49",
+      "dense_passage_retrieval_for_open_domain_question_answering_c15",
+      "dense_passage_retrieval_for_open_domain_question_answering_c15",
+      "the_use_mmr_diversity_based_ltmir_1998_c5",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c64",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c64",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c67"
+    ],
+    "relevant": [
+      "bleurt_learning_robust_metrics_for_text_generation_c39"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "language_models_are_few_shot_learners_c127",
+      "language_models_are_few_shot_learners_c127",
+      "language_models_are_few_shot_learners_c83",
+      "language_models_are_few_shot_learners_c83",
+      "language_models_are_few_shot_learners_c82",
+      "language_models_are_few_shot_learners_c82",
+      "training_language_models_to_follow-instructions_with_human_feedback_c33",
+      "training_language_models_to_follow-instructions_with_human_feedback_c33",
+      "language_models_are_few_shot_learners_c48",
+      "language_models_are_few_shot_learners_c48"
+    ],
+    "relevant": [
+      "language_models_are_few_shot_learners_c127"
+    ],
+    "recall@1": 1.0,
+    "ndcg@1": 1.0,
+    "recall@3": 1.0,
+    "ndcg@3": 1.6309297535714575,
+    "recall@5": 1.0,
+    "ndcg@5": 1.6309297535714575,
+    "recall@10": 1.0,
+    "ndcg@10": 1.6309297535714575,
+    "reciprocal_rank": 1.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c5",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c5",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c8",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c8",
+      "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c32",
+      "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c32",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c22",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c22",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c46",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c46"
+    ],
+    "relevant": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c0",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c1"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "xgboost_a_scalable_tree_boosting_system_c4",
+      "xgboost_a_scalable_tree_boosting_system_c4",
+      "xgboost_a_scalable_tree_boosting_system_c38",
+      "xgboost_a_scalable_tree_boosting_system_c38",
+      "xgboost_a_scalable_tree_boosting_system_c30",
+      "xgboost_a_scalable_tree_boosting_system_c30",
+      "xgboost_a_scalable_tree_boosting_system_c3",
+      "xgboost_a_scalable_tree_boosting_system_c3",
+      "xgboost_a_scalable_tree_boosting_system_c17",
+      "xgboost_a_scalable_tree_boosting_system_c17"
+    ],
+    "relevant": [
+      "xgboost_a_scalable_tree_boosting_system_c28"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "deep_learning_hilton_bengio_lecun_c19",
+      "deep_learning_hilton_bengio_lecun_c19",
+      "deep_learning_hilton_bengio_lecun_c24",
+      "deep_learning_hilton_bengio_lecun_c24",
+      "deep_learning_hilton_bengio_lecun_c25",
+      "deep_learning_hilton_bengio_lecun_c25",
+      "ijirt206678_paperstracturaldamage_c17",
+      "ijirt206678_paperstracturaldamage_c17",
+      "ijirt206678_paperstracturaldamage_c17",
+      "deep_learning_hilton_bengio_lecun_c26"
+    ],
+    "relevant": [
+      "ijirt206678_paperstracturaldamage_c17"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 1.0,
+    "ndcg@10": 0.9498282057830434,
+    "reciprocal_rank": 0.14285714285714285
+  },
+  {
+    "question_id": "What is the main difference between SBERT and other sentence embedding methods?",
+    "retrieved": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c4",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c4",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c23",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c23",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c17",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c17",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c3",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c3",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c12",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c12"
+    ],
+    "relevant": [
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c24",
+      "sentence_bert_sentence_embeddings_using_siamese_bert_networks_c2"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q3",
+    "retrieved": [
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c11",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c11",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c32",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c32",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c18",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c18",
+      "cider_consensus_based_image_description_evaluation_c11",
+      "cider_consensus_based_image_description_evaluation_c11",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c66",
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c66"
+    ],
+    "relevant": [
+      "truthfulqa_measuring_how_models_mimic_human_falsehoods_c2"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q2",
+    "retrieved": [
+      "colbert_e\u0080fficient_and-eff\u0080ective_passage_search_via_contextualized_late_interaction_over_bert_c19",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c10",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c10",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c7",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c7",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c46",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c46",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c8",
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c8",
+      "colbert_e\u0080fficient_and-eff\u0080ective_passage_search_via_contextualized_late_interaction_over_bert_c17"
+    ],
+    "relevant": [
+      "bert_pre_training_of_deep_bidirectional_transformers_for_language_understanding_c12"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q3",
+    "retrieved": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c10",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c3",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c3",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c3",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c15",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c15",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c15",
+      "not_as_sweet_by_another_name_an_empirical_study_of_c18"
+    ],
+    "relevant": [
+      "not_as_sweet_by_another_name_an_empirical_study_of_c10"
+    ],
+    "recall@1": 1.0,
+    "ndcg@1": 1.0,
+    "recall@3": 1.0,
+    "ndcg@3": 2.1309297535714578,
+    "recall@5": 1.0,
+    "ndcg@5": 2.1309297535714578,
+    "recall@10": 1.0,
+    "ndcg@10": 2.1309297535714578,
+    "reciprocal_rank": 1.0
+  },
+  {
+    "question_id": "What is the main difference between dense retrievers and other retrieval methods?",
+    "retrieved": [
+      "dense_passage_retrieval_for_open_domain_question_answering_c14",
+      "dense_passage_retrieval_for_open_domain_question_answering_c14",
+      "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c1",
+      "approximate_nearest_neighbor_negative_contrastive_learning_for_dense_text_retrieval_c1",
+      "unsupervised_dense_information_retrieval_with_contrastive_learning_c0",
+      "unsupervised_dense_information_retrieval_with_contrastive_learning_c0",
+      "dense_passage_retrieval_for_open_domain_question_answering_c6",
+      "dense_passage_retrieval_for_open_domain_question_answering_c6",
+      "unsupervised_dense_information_retrieval_with_contrastive_learning_c8",
+      "unsupervised_dense_information_retrieval_with_contrastive_learning_c8"
+    ],
+    "relevant": [
+      "beir_a_heterogeneous_benchmark_for_zero_shot_evaluation_of_information_retrieval_models_c9"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "ijirt206678_paperstracturaldamage_c18",
+      "ijirt206678_paperstracturaldamage_c18",
+      "ijirt206678_paperstracturaldamage_c18",
+      "ijirt206678_paperstracturaldamage_c28",
+      "ijirt206678_paperstracturaldamage_c28",
+      "ijirt206678_paperstracturaldamage_c28",
+      "ijirt206678_paperstracturaldamage_c10",
+      "ijirt206678_paperstracturaldamage_c10",
+      "ijirt206678_paperstracturaldamage_c10",
+      "ijirt206678_paperstracturaldamage_c25"
+    ],
+    "relevant": [
+      "ijirt206678_paperstracturaldamage_c25"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 1.0,
+    "ndcg@10": 0.2890648263178879,
+    "reciprocal_rank": 0.1
+  },
+  {
+    "question_id": "What is the main limitation of the DARR metric?",
+    "retrieved": [
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c19",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c19",
+      "cider_consensus_based_image_description_evaluation_c32",
+      "cider_consensus_based_image_description_evaluation_c32",
+      "comet_a_neural_framework_for_mt_evaluation_c19",
+      "comet_a_neural_framework_for_mt_evaluation_c19",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c6",
+      "moverscore_text_generation_evaluating_with_contextualized_embeddings_and_earth_mover_distance_c6",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c69",
+      "nlg_evaluation_metrics_beyond_correlation_analysis_an_empirical_metric_preference_checklist_c69"
+    ],
+    "relevant": [
+      "bleurt_learning_robust_metrics_for_text_generation_c39"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 0.0,
+    "ndcg@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "reciprocal_rank": 0.0
+  },
+  {
+    "question_id": "q1",
+    "retrieved": [
+      "ijirt206678_paperstracturaldamage_c31",
+      "ijirt206678_paperstracturaldamage_c31",
+      "ijirt206678_paperstracturaldamage_c31",
+      "ijirt206678_paperstracturaldamage_c9",
+      "ijirt206678_paperstracturaldamage_c9",
+      "ijirt206678_paperstracturaldamage_c9",
+      "ijirt206678_paperstracturaldamage_c0",
+      "ijirt206678_paperstracturaldamage_c0",
+      "ijirt206678_paperstracturaldamage_c0",
+      "ijirt206678_paperstracturaldamage_c3"
+    ],
+    "relevant": [
+      "ijirt206678_paperstracturaldamage_c9"
+    ],
+    "recall@1": 0.0,
+    "ndcg@1": 0.0,
+    "recall@3": 0.0,
+    "ndcg@3": 0.0,
+    "recall@5": 1.0,
+    "ndcg@5": 0.8175293653079347,
+    "recall@10": 1.0,
+    "ndcg@10": 1.1737365524159569,
+    "reciprocal_rank": 0.25
+  }
+]

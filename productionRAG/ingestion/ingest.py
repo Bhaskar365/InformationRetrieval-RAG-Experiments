@@ -14,9 +14,11 @@ from langchain_community.document_loaders import (
 from ingestion.chunk import split_documents
 from ingestion.vectorstore import create_vectorstore
 
+import json
 
 DIR_LOC = Path(r"D:\mlTesting\FAISS")
 DOCS_DIR = DIR_LOC / "productionRAG" / "docs"
+CHUNKS_FILE = DIR_LOC / "productionRAG" / "data" / "chunks.jsonl"
 
 
 def make_document_id(filename: str) -> str:
@@ -67,6 +69,46 @@ def load_docs(folder=DOCS_DIR) -> list[Document]:
 
     return docs
 
+def save_chunks_jsonl(chunks):
+
+    CHUNKS_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    # "w" is intentional.
+    # Re-running ingestion replaces the old dataset
+    # instead of creating duplicate chunks.
+
+    with open(
+        CHUNKS_FILE,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        for chunk in chunks:
+
+            record = {
+                "chunk_id": chunk.metadata.get("chunk_id"),
+                "document_id": chunk.metadata.get("document_id"),
+                "filename": chunk.metadata.get("filename"),
+                "file_type": chunk.metadata.get("file_type"),
+                "page_number": chunk.metadata.get("page_number"),
+                "source": chunk.metadata.get("source"),
+                "text": chunk.page_content,
+            }
+
+            f.write(
+                json.dumps(
+                    record,
+                    ensure_ascii=False
+                ) + "\n"
+            )
+
+    print(
+        f"Saved {len(chunks)} chunks to {CHUNKS_FILE}"
+    )
+
 
 if __name__ == "__main__":
 
@@ -89,5 +131,7 @@ if __name__ == "__main__":
 
         print("\nContent:")
         print(chunk.page_content[:300])
+
+    save_chunks_jsonl(chunks)
 
     create_vectorstore(chunks)

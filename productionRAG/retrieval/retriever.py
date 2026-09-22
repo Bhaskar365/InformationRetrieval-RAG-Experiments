@@ -73,20 +73,6 @@ def get_retriever():
 
 def print_chunks_for_annotation(query):
 
-    # docs = _db.similarity_search(query, k=20)
-
-    # for rank, doc in enumerate(docs, 1):
-
-    #     record = {
-    #         "rank": rank,
-    #         "chunk_id": doc.metadata.get('chunk_id'),
-    #         "page_number": doc.metadata.get('page_number'),
-    #         "content": doc.page_content
-    #     }
-
-    #     with open("D:\\mlTesting\\FAISS\\productionRAG\\data\\questionAnalysis.jsonl", "a", encoding='utf-8') as f:
-    #         f.write(json.dumps(record) + "\n")
-
     docs_and_scores = _db.similarity_search_with_score(
         query,
         k=20
@@ -103,6 +89,7 @@ def print_chunks_for_annotation(query):
             "content": doc.page_content
         }
 
+
         with open(
             "D:\\mlTesting\\FAISS\\productionRAG\\data\\questionAnalysis.jsonl",
             "a",
@@ -110,7 +97,8 @@ def print_chunks_for_annotation(query):
         ) as f:
             f.write(json.dumps(record) + "\n")
 
-def debug_retrieval(query):
+
+def debug_retrieval(query): 
 
     vector_results = _db.similarity_search_with_score(
         query,
@@ -295,6 +283,7 @@ def debug_retrieval(query):
     print("=" * 80)
 
     final_docs = _retriever.invoke(query)
+    print(final_docs)
 
     bge_chunks = [
         doc.metadata.get('chunk_id') for doc in final_docs
@@ -327,6 +316,8 @@ def debug_retrieval(query):
         print("\nCONTENT:")
         print(doc.page_content[:1000])
 
+        # chunk_id_cleaned = doc.metadata.get("chunk_id")
+        # chunk_id_cleaned = chunk_id_cleaned
         
         record = {
             "query": query,

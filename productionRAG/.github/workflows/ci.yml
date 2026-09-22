@@ -1,0 +1,28 @@
+
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v3
+      - name: action/setup-python@4
+      with:
+        python-version: '3.10'
+      
+      - name: Install dependencies
+      run:
+        pip install -r requirements.txt
+        pip install pytest
+
+      - name: Run Tests
+      run: pytest
+
+      -name: Lint with Ruff
+      run:
+        pip install ruff
+        ruff check .
+
+        
