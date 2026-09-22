@@ -91,3 +91,21 @@ class GenerationMetrics(BaseModel):
     total_failed:int = 0
     start_time: datetime = Field(default_factory=datetime.utcnow)
     end_time:Optional[datetime] = None
+
+    @property
+    def success_rate(self) -> float:
+        if self.total_generated == 0:
+            return 0.0
+        return self.total_valid / self.total_generated
+
+    @property
+    def duration_seconds(self) -> float:
+        end = self.end_time or datetime.utcnow()
+        return (end - self.start_time).total_seconds
+
+class Checkpoint(BaseModel):
+    """Save/restore generation progress."""
+    questions: List[EvaluationQuestion]
+    metrics: GenerationMetrics
+    config: Dict[str, Any]
+    timestamp: datetime = Field(default_factory=datetime.utcnow)

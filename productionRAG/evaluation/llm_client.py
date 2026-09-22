@@ -109,12 +109,20 @@ LLM Client with provider abstraction.
 Supports Ollama (local) and OpenRouter (cloud) with unified interface.
 """
 
-from typing import Optional, Type, Any
 import os
+import time
+import asyncio
+from typing import Optional, Type, Any, TypeVar, Callable, List
+from contextlib import contextmanager
+from functools import wraps
 
 from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
 from langchain_core.language_models import BaseChatModel
+from langchain_core.exceptions import OutputParserException
+from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
 try:
     from langchain_ollama import ChatOllama
@@ -125,6 +133,65 @@ except ImportError:
 from config.settings import settings, LLMConfig
 from evaluation.schemas import EvaluationBatch, Critique
 
+from .config import (
+    GENERATION_MODEL,
+    CRITIC_MODEL,
+    EMBEDDING_MODEL,
+    LLM_RETRY_ATTEMPTS,
+    LLM_RETRY_DELAY_SECONDS
+)
+
+from .schemas import EvaluationBatch, Critique
+from .exceptions import LLMError, RateLimiter
+
+load_dotenv()
+
+T = TypeVar('T')
+
+def retry_with_backoff(
+        max_attempts:int = LLM_RETRY_ATTEMPTS,
+        base_delay:float = LLM_RETRY_DELAY_SECONDS,
+        exceptions:tuple = (Exception)
+) -> Callable:
+    """Decorator for retrying LLM calls with exponential backoff."""
+
+    def decorator(func: Callable[...,T]) -> Callable[...,T]:
+
+        @wraps
+        def wrapper(*args, **kwargs) -> T:
+            last_exception = None
+
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except exceptions as e:
+                    last_exception = 0
+                    if attempt < max_attempts-1:
+                        delay = base_delay * (2**attempt)
+                        time.sleep(delay)
+                    continue
+            raise LLMError(f"Failed after {max_attempts} attempts: {last_exception}")
+
+        return wrapper
+    
+    return decorator    
+
+class RateLimiter:
+    """Simple token bucket rate limiter."""
+
+    def __init__(self, requests_per_minute:int=30):
+        self.min_interval = 60.0 / requests_per_minute
+        self.last_request_time: Optional[float] = None
+
+    def acquire(self):
+        """Wait if necessary to comply with rate limit."""
+
+        if self.last_request_time is not None:
+            elapsed = time.time() - self.last_request_time
+
+        if elapsed < self.min_interval:
+            time.sleep(self.min_interval - elapsed)
+            self.last_request_time = time.time()
 
 class LLMFactory:
     """Factory for creating LLM clients based on configuration."""
@@ -150,10 +217,10 @@ class LLMFactory:
             temperature=config.temperature,
             api_key=config.api_key,
             base_url=config.base_url,
-            default_headers={
-                "HTTP-Referer": "https://your-app.com",
-                "X-Title": "Production RAG",
-            }
+            # default_headers={
+            #     "HTTP-Referer": "https://your-app.com",
+            #     "X-Title": "Production RAG",
+            # }
         )
     
     @staticmethod
@@ -189,7 +256,97 @@ class LLMClient:
         # Structured output clients (if model supports it)
         self.structured_client = self._try_structured_output(self.client, EvaluationBatch)
         self.structured_critic_client = self._try_structured_output(self.critic_client, Critique)
-    
+
+        self.rate_limiter = RateLimiter()
+        self._init_clients()
+
+    def _init_clients(self):
+        """Initialize LLM clients."""
+        try:
+            self.client = ChatOllama(
+                model=GENERATION_MODEL,
+                temperature=0.0,
+                timeout=120
+            )
+            self.structured_client = self.client.with_structured_output(
+                EvaluationBatch,
+                method='json_mode'
+            )
+
+            self.critic_client = ChatOllama(
+                model=CRITIC_MODEL,
+                temperature=0.0,
+                timeout=120
+            )
+            self.structured_critic_client = self.structured_critic_client(
+                Critique,
+                method='json_mode'
+            )
+
+            self.embedding_client = SentenceTransformer(EMBEDDING_MODEL)
+
+        except Exception as e:
+            raise LLMError(f"Failed to initialize LLM clients: {e}")
+
+
+        @retry_with_backoff(
+            max_attempts=LLM_RETRY_ATTEMPTS,
+            exceptions=(Exception, OutputParserException)
+        )
+
+        def generate_questions(self, system_prompt:str, user_prompt:str) -> EvaluationBatch:
+            """Generate questions with rate limiting and retry."""
+            self.rate_limiter.acquire()
+
+            try:
+                response = self.structured_client.invoke([
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ])
+                return response
+            
+            except OutputParserException as e:
+                raise LLMError(f"Failed to parse LLM output: {e}")
+
+            except Exception as e:
+                raise LLMError(f"Question generation failed: {e}")
+
+        @retry_with_backoff(
+            max_attempts=LLM_RETRY_ATTEMPTS,
+            exceptions=(Exception, OutputParserException)
+        )
+
+        def critique_question(self, system_prompt:str, user_prompt:str) -> Critique:
+            """Critique question with rate limiting and retry."""
+            self.rate_limiter.acquire()
+
+            try:
+                response = self.structured_critic_client.invoke([
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ])
+
+                return response
+
+            except OutputParserException as e:
+                raise LLMError(f"Failed to parse critique output: {e}")
+            except Exception as e:
+                raise LLMError(f"Critique generation failed: {e}")
+
+        def embed(self, texts: List[str]) -> List[List[float]]:
+
+            """Generate embeddings for texts."""
+            if not texts:
+                return []
+
+            try:
+                embeddings = self.embedding_client.encode(texts, convert_to_numpy=True, show_progress_bar=False, batch_size=32)
+                return embeddings.tolist()
+            
+            except Exception as e:
+                raise LLMError(f"Embedding generation failed: {e}")
+
+
     def _try_structured_output(self, client: BaseChatModel, schema: Type[Any]):
         """Attempt to create structured output client, fallback to raw."""
         try:
